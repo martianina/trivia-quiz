@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Menu from "../pages/Menu/Menu";
+import Questions from "../pages/Questions/Questions";
+import Results from "../pages/Results/Results";
 import styles from "./App.module.css";
 
 function App() {
@@ -17,9 +19,7 @@ function App() {
     value: null,
   });
 
-  const [quizData, setQuizData] = useState([
-    { question: "", answers: [], correctAnswer: "" },
-  ]);
+  const [quizData, setQuizData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState("menu");
 
@@ -39,6 +39,7 @@ function App() {
     numberOfQuestions % 1 == 0;
 
   const startQuiz = () => {
+    setCurrentPage("questions");
     if (isFormValid) {
       console.log({});
       fetch(
@@ -59,13 +60,18 @@ function App() {
                 question: _.question,
                 answers: _.incorrect_answers.concat(_.correct_answer).sort(),
                 correctAnswer: _.correct_answer,
+                selectedAnswers: {},
               };
             })
           )
-        )
-        .then(console.log({ quizData }));
+        );
     } else alert("Fix all errors before clicking START.");
   };
+
+  // useEffect(() => {
+  //   if (quizData && currentPage === "menu") setCurrentPage("questions");
+  // }, [quizData]);
+
   const menuActions = {
     changeNumberOfQuestions,
     changeCategory,
@@ -83,7 +89,19 @@ function App() {
   };
   return (
     <div className={styles.App}>
-      <Menu menuActions={menuActions} menuState={menuState} />
+      {currentPage === "menu" && (
+        <Menu menuActions={menuActions} menuState={menuState} />
+      )}
+      {currentPage === "questions" && (
+        <Questions quizData={quizData} setCurrentPage={setCurrentPage} />
+      )}
+      {currentPage === "results" && (
+        <Results
+          quizData={quizData}
+          setQuizData={setQuizData}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </div>
   );
 }

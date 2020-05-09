@@ -2,12 +2,17 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
-const GenericButton = ({ label, variant, color, onClick }) => {
+const GenericButton = ({
+  label,
+  variant,
+  color,
+  onClick,
+  style,
+  labelStyle,
+}) => {
   const useStyles = makeStyles((theme) => ({
-    root: {
-      // backgroundColor: "green",
-    },
-    label: { fontWeight: "bold" },
+    root: style,
+    label: labelStyle,
   }));
 
   const classes = useStyles();

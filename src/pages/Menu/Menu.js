@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Title from "../../components/Title/Title";
+import Title from "../../components/common/Title/Title";
 import NumberOfQuestionsField from "../../components/common/inputs/Textfield/Textfield";
 import CategoryDropdown from "../../components/common/inputs/Dropdown/Dropdown";
 import DifficultyDropdown from "../../components/common/inputs/Dropdown/Dropdown";
@@ -31,7 +31,7 @@ const Menu = ({ menuActions, menuState }) => {
     <div>
       {categories && (
         <div className={styles.menu}>
-          <Title />
+          <Title title="Welcome to Anthony Hien Vu's Quiz!" />
           <NumberOfQuestionsField
             label="Number of Questions:"
             variant="outlined"
