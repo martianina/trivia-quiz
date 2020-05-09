@@ -17,7 +17,9 @@ function App() {
     value: null,
   });
 
-  const [quizData, setQuizData] = useState(null);
+  const [quizData, setQuizData] = useState([
+    { question: "", answers: [], correctAnswer: "" },
+  ]);
 
   const [currentPage, setCurrentPage] = useState("menu");
 
@@ -38,7 +40,8 @@ function App() {
 
   const startQuiz = () => {
     if (isFormValid) {
-      console.log(
+      console.log({});
+      fetch(
         `https://opentdb.com/api.php?amount=${numberOfQuestions}${
           category && category.id ? `&category=${category.id}` : ""
         }${
@@ -46,17 +49,21 @@ function App() {
             ? `&difficulty=${difficulty.value}`
             : ""
         }${type && type.value ? `&type=${type.value}` : ""}`
-      );
-      // fetch(
-      //   `https://opentdb.com/api.php?amount=${numberOfQuestions}${
-      //     category && `&category=${category.id}`
-      //   }${difficulty && `&difficulty=${difficulty.value}`}${
-      //     type && `&type=${type.value}`
-      //   }`
-      // )
-      //   .then((response) => response.json())
-      //   // .then((data) => console.log({ data }));
-      //   .then((data) => console.log({ data }));
+      )
+        .then((response) => response.json())
+        // .then((data) => console.log({ data }));
+        .then((data) =>
+          setQuizData(
+            data.results.map((_) => {
+              return {
+                question: _.question,
+                answers: _.incorrect_answers.concat(_.correct_answer).sort(),
+                correctAnswer: _.correct_answer,
+              };
+            })
+          )
+        )
+        .then(console.log({ quizData }));
     } else alert("Fix all errors before clicking START.");
   };
   const menuActions = {
