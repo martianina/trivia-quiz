@@ -1,3 +1,5 @@
+# This project is still in progress. Upon completion, a codesandbox & github pages link will be posted here so anyone can view the running application and complete the quiz.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
