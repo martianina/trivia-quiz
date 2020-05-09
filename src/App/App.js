@@ -38,13 +38,26 @@ function App() {
 
   const startQuiz = () => {
     if (isFormValid) {
-      fetch(
-        `https://opentdb.com/api.php?amount=${numberOfQuestions}${"&category=19"}&difficulty=medium&type=multiple`
-      )
-        .then((response) => response.json())
-        // .then((data) => console.log({ data }));
-        .then((data) => console.log({ data }));
-    }
+      console.log(
+        `https://opentdb.com/api.php?amount=${numberOfQuestions}${
+          category && category.id ? `&category=${category.id}` : ""
+        }${
+          difficulty && difficulty.value
+            ? `&difficulty=${difficulty.value}`
+            : ""
+        }${type && type.value ? `&type=${type.value}` : ""}`
+      );
+      // fetch(
+      //   `https://opentdb.com/api.php?amount=${numberOfQuestions}${
+      //     category && `&category=${category.id}`
+      //   }${difficulty && `&difficulty=${difficulty.value}`}${
+      //     type && `&type=${type.value}`
+      //   }`
+      // )
+      //   .then((response) => response.json())
+      //   // .then((data) => console.log({ data }));
+      //   .then((data) => console.log({ data }));
+    } else alert("Fix all errors before clicking START.");
   };
   const menuActions = {
     changeNumberOfQuestions,
@@ -52,6 +65,7 @@ function App() {
     changeDifficulty,
     changeType,
     setCurrentPage,
+    startQuiz,
   };
   const menuState = {
     numberOfQuestions,

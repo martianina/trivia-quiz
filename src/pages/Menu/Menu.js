@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Title from "../../components/Title/Title";
-import NumberInput from "../../components/common/inputs/Textfield/Textfield";
-import DropDown from "../../components/common/inputs/Dropdown/Dropdown";
+import NumberOfQuestionsField from "../../components/common/inputs/Textfield/Textfield";
+import CategoryDropdown from "../../components/common/inputs/Dropdown/Dropdown";
+import DifficultyDropdown from "../../components/common/inputs/Dropdown/Dropdown";
+import TypeDropdown from "../../components/common/inputs/Dropdown/Dropdown";
+import StartQuizButton from "../../components/common/buttons/Button/Button";
 import styles from "./Menu.module.css";
 import * as style from "./Menu.style";
 
@@ -29,17 +32,17 @@ const Menu = ({ menuActions, menuState }) => {
       {categories && (
         <div className={styles.menu}>
           <Title />
-          <NumberInput
+          <NumberOfQuestionsField
             label="Number of Questions:"
             variant="outlined"
             type="number"
             onChange={menuActions.changeNumberOfQuestions}
             style={{ width: "8.3vw" }}
             value={menuState.numberOfQuestions}
-            helperText="Number must be an integer less than or equal to 50."
+            helperText="Error: Number must be an integer less than or equal to 50."
             error={!menuState.isFormValid}
           />
-          <DropDown
+          <CategoryDropdown
             options={categories}
             label="Select Category:"
             variant="outlined"
@@ -47,7 +50,7 @@ const Menu = ({ menuActions, menuState }) => {
             onChange={menuActions.changeCategory}
             value={menuState.category}
           />
-          <DropDown
+          <DifficultyDropdown
             options={style.difficulties}
             label="Select Difficulty:"
             variant="outlined"
@@ -55,13 +58,19 @@ const Menu = ({ menuActions, menuState }) => {
             onChange={menuActions.changeDifficulty}
             value={menuState.difficulty}
           />
-          <DropDown
+          <TypeDropdown
             options={style.types}
             label="Select Type:"
             variant="outlined"
             inputStyle={style.dropdownStyle}
             onChange={menuActions.changeType}
             value={menuState.type}
+          />
+          <StartQuizButton
+            label="START"
+            variant="contained"
+            onClick={menuActions.startQuiz}
+            color="primary"
           />
         </div>
       )}
