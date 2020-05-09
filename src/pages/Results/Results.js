@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../../components/common/Title/Title";
 import Button from "../../components/common/buttons/Button/Button";
+import styles from "./Results.module.css";
 
 const Results = ({ quizData, setQuizData, setCurrentPage }) => {
   const onRestart = () => {
@@ -9,7 +10,7 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
   };
 
   return (
-    <div>
+    <div className={styles.results}>
       <Title title={"Placeholder Results Title"} />
       <Button
         label={"Restart"}

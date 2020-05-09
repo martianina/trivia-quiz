@@ -8,13 +8,25 @@ const Questions = ({ quizData, setCurrentPage }) => {
   const [questionId, setQuestionId] = useState(0);
   const incrementQuestionId = () => setQuestionId(questionId + 1);
 
+  const convertToRegularString = (string) => {
+    return string
+      .replace(/&#(?:x([\da-f]+)|(\d+));/gi, function (_, hex, dec) {
+        return String.fromCharCode(dec || +("0x" + hex));
+      })
+      .replace(/&quot;/g, ``)
+      .replace(/&amp/g, "&")
+      .replace(/&shy;/g, "-")
+      .replace(/&eacute;/g, "é");
+  };
+
   return (
     <div>
       {quizData && (
         <div className={styles.questions}>
           <Title
             title={`${questionId + 1}. ${
-              quizData[questionId] && quizData[questionId].question
+              quizData[questionId] &&
+              convertToRegularString(quizData[questionId].question)
             }`}
           />
           <Button
