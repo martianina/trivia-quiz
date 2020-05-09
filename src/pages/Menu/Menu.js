@@ -1,39 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Title from "../../components/Title/Title";
-import SelectNumberOfQuestions from "../../components/common/inputs/Textfield/Textfield";
-import SelectCategory from "../../components/common/inputs/Dropdown/Dropdown";
+import NumberInput from "../../components/common/inputs/Textfield/Textfield";
+import DropDown from "../../components/common/inputs/Dropdown/Dropdown";
 import styles from "./Menu.module.css";
+import * as style from "./Menu.style";
 
 const Menu = ({ menuActions, menuState }) => {
+  const [categories, setCategories] = useState(null);
+
+  useEffect(() => {
+    fetch("https://opentdb.com/api_category.php")
+      .then((response) => response.json())
+      // .then((data) => console.log({ data }));
+      .then((data) =>
+        setCategories(
+          [
+            {
+              name: "Any Category",
+              id: null,
+            },
+          ].concat(data.trivia_categories)
+        )
+      );
+  }, []);
+
   return (
-    <div className={styles.menu}>
-      <Title />
-      <SelectNumberOfQuestions
-        label="Number of Questions:"
-        variant="outlined"
-        type="number"
-        onChange={menuActions.changeNumberOfQuestions}
-        style={{ width: "8.3vw" }}
-        value={menuState.numberOfQuestions}
-        helperText="Number must be less than or equal to 50."
-        error={
-          !(
-            menuState.numberOfQuestions >= 1 &&
-            menuState.numberOfQuestions <= 50
-          )
-        }
-      />
-      <SelectCategory
-        options={[
-          { title: "The Shawshank Redemption", year: 1994 },
-          { title: "The Godfather", year: 1972 },
-          { title: "The Godfather: Part II", year: 1974 },
-        ]}
-        label="Select Category:"
-        variant="outlined"
-        inputStyle={{ width: "11.5vw" }}
-        // listboxStyle={{ width: "auto" }}
-      />
+    <div>
+      {categories && (
+        <div className={styles.menu}>
+          <Title />
+          <NumberInput
+            label="Number of Questions:"
+            variant="outlined"
+            type="number"
+            onChange={menuActions.changeNumberOfQuestions}
+            style={{ width: "8.3vw" }}
+            value={menuState.numberOfQuestions}
+            helperText="Number must be an integer less than or equal to 50."
+            error={!menuState.isFormValid}
+          />
+          <DropDown
+            options={categories}
+            label="Select Category:"
+            variant="outlined"
+            inputStyle={style.dropdownStyle}
+            onChange={menuActions.changeCategory}
+            value={menuState.category}
+          />
+          <DropDown
+            options={style.difficulties}
+            label="Select Difficulty:"
+            variant="outlined"
+            inputStyle={style.dropdownStyle}
+            onChange={menuActions.changeDifficulty}
+            value={menuState.difficulty}
+          />
+          <DropDown
+            options={style.types}
+            label="Select Type:"
+            variant="outlined"
+            inputStyle={style.dropdownStyle}
+            onChange={menuActions.changeType}
+            value={menuState.type}
+          />
+        </div>
+      )}
     </div>
   );
 };
