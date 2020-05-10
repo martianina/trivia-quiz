@@ -45,7 +45,10 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
             }`}
           />
           <AnswerGrid
-            answers={quizData[questionId] && quizData[questionId].answers}
+            answers={
+              quizData[questionId] &&
+              quizData[questionId].answers.map((_) => convertToRegularString(_))
+            }
           />
           <div className={styles.questions__buttonsContainer}>
             <RestartButton

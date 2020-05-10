@@ -31,47 +31,59 @@ const Menu = ({ menuActions, menuState }) => {
     <div>
       {categories && (
         <div className={styles.menu}>
-          <Title title="Welcome to Anthony Hien Vu's Quiz!" />
-          <NumberOfQuestionsField
-            label="Number of Questions:"
-            variant="outlined"
-            type="number"
-            onChange={menuActions.changeNumberOfQuestions}
-            style={{ width: "8.3vw" }}
-            value={menuState.numberOfQuestions}
-            helperText="Error: Number must be an integer less than or equal to 50."
-            error={!menuState.isFormValid}
-          />
-          <CategoryDropdown
-            options={categories}
-            label="Select Category:"
-            variant="outlined"
-            inputStyle={style.dropdownStyle}
-            onChange={menuActions.changeCategory}
-            value={menuState.category}
-          />
-          <DifficultyDropdown
-            options={style.difficulties}
-            label="Select Difficulty:"
-            variant="outlined"
-            inputStyle={style.dropdownStyle}
-            onChange={menuActions.changeDifficulty}
-            value={menuState.difficulty}
-          />
-          <TypeDropdown
-            options={style.types}
-            label="Select Type:"
-            variant="outlined"
-            inputStyle={style.dropdownStyle}
-            onChange={menuActions.changeType}
-            value={menuState.type}
-          />
-          <StartQuizButton
-            label="START"
-            variant="contained"
-            onClick={menuActions.startQuiz}
-            color="primary"
-          />
+          <div className={styles.menu__item_centered}>
+            <Title title="Welcome to Anthony Hien Vu's Quiz!" />
+          </div>
+          <div className={styles.menu__item_left}>
+            <NumberOfQuestionsField
+              label="Number of Questions:"
+              variant="outlined"
+              type="number"
+              onChange={menuActions.changeNumberOfQuestions}
+              style={style.textFieldStyle}
+              value={menuState.numberOfQuestions}
+              helperText="Error: Number must be an integer less than or equal to 50."
+              error={!menuState.isFormValid}
+            />
+          </div>
+          <div className={styles.menu__item_left}>
+            <CategoryDropdown
+              options={categories}
+              label="Select Category:"
+              variant="outlined"
+              inputStyle={style.dropdownStyle}
+              onChange={menuActions.changeCategory}
+              value={menuState.category}
+            />
+          </div>
+          <div className={styles.menu__item_left}>
+            <DifficultyDropdown
+              options={style.difficulties}
+              label="Select Difficulty:"
+              variant="outlined"
+              inputStyle={style.dropdownStyle}
+              onChange={menuActions.changeDifficulty}
+              value={menuState.difficulty}
+            />
+          </div>
+          <div className={styles.menu__item_left}>
+            <TypeDropdown
+              options={style.types}
+              label="Select Type:"
+              variant="outlined"
+              inputStyle={style.dropdownStyle}
+              onChange={menuActions.changeType}
+              value={menuState.type}
+            />
+          </div>
+          <div className={styles.menu__item_centered}>
+            <StartQuizButton
+              label="START"
+              variant="contained"
+              onClick={menuActions.startQuiz}
+              color="primary"
+            />
+          </div>
         </div>
       )}
     </div>

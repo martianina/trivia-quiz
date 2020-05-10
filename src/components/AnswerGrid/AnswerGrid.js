@@ -6,11 +6,19 @@ const AnswerGrid = ({ answers }) => {
   return (
     <div className={styles.answerGrid}>
       <AnswerButton
-        label={answers && answers.length !== 2 ? answers[0] : answers[1]}
+        label={
+          answers && answers.length !== 2
+            ? answers && answers[0]
+            : answers && answers[1]
+        }
         variant="contained"
       />
       <AnswerButton
-        label={answers && answers.length !== 2 ? answers[1] : answers[0]}
+        label={
+          answers && answers.length !== 2
+            ? answers && answers[1]
+            : answers && answers[0]
+        }
         variant="contained"
       />
       {answers && answers.length === 4 && (
