@@ -1,22 +1,37 @@
 import React, { useState, useEffect } from "react";
 import Title from "../../components/common/Title/Title";
-import Button from "../../components/common/buttons/Button/Button";
-
+import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
+import NextButton from "../../components/common/buttons/Button/Button";
+import RestartButton from "../../components/common/buttons/Button/Button";
 import styles from "./Questions.module.css";
 
-const Questions = ({ quizData, setCurrentPage }) => {
+const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
   const [questionId, setQuestionId] = useState(0);
   const incrementQuestionId = () => setQuestionId(questionId + 1);
 
+  // const removeHTMLCharacters = (string, htmlToReplace) => {
+  //   let newString = string;
+  //   for ([old, new] in Object.entries(htmlToReplace)) {
+  //     newString = newString.replace(/${old}/g, new)
+  //   }
+  // }
   const convertToRegularString = (string) => {
     return string
       .replace(/&#(?:x([\da-f]+)|(\d+));/gi, function (_, hex, dec) {
         return String.fromCharCode(dec || +("0x" + hex));
       })
-      .replace(/&quot;/g, ``)
+      .replace(/&quot;/g, `"`)
       .replace(/&amp/g, "&")
       .replace(/&shy;/g, "-")
-      .replace(/&eacute;/g, "é");
+      .replace(/&eacute;/g, "é")
+      .replace(/&Uuml;/g, "Ü")
+      .replace(/&ldquo;/g, `"`)
+      .replace(/&#039;/g, `'`);
+  };
+
+  const onRestart = () => {
+    setQuizData(null);
+    setCurrentPage("menu");
   };
 
   return (
@@ -29,16 +44,27 @@ const Questions = ({ quizData, setCurrentPage }) => {
               convertToRegularString(quizData[questionId].question)
             }`}
           />
-          <Button
-            label={questionId < quizData.length - 1 ? "NEXT" : "FINISH"}
-            variant="contained"
-            color="primary"
-            onClick={
-              questionId <= quizData.length - 1
-                ? incrementQuestionId
-                : setCurrentPage("results")
-            }
+          <AnswerGrid
+            answers={quizData[questionId] && quizData[questionId].answers}
           />
+          <div className={styles.questions__buttonsContainer}>
+            <RestartButton
+              label="RESTART"
+              variant="contained"
+              color="primary"
+              onClick={onRestart}
+            />
+            <NextButton
+              label={questionId < quizData.length - 1 ? "NEXT" : "FINISH"}
+              variant="contained"
+              color="primary"
+              onClick={
+                questionId <= quizData.length - 1
+                  ? incrementQuestionId
+                  : setCurrentPage("results")
+              }
+            />
+          </div>
         </div>
       )}
     </div>

@@ -5,3 +5,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.questions__buttonsContainer {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 2vh;
+}

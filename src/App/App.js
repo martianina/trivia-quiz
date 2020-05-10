@@ -93,7 +93,11 @@ function App() {
         <Menu menuActions={menuActions} menuState={menuState} />
       )}
       {currentPage === "questions" && (
-        <Questions quizData={quizData} setCurrentPage={setCurrentPage} />
+        <Questions
+          quizData={quizData}
+          setQuizData={setQuizData}
+          setCurrentPage={setCurrentPage}
+        />
       )}
       {currentPage === "results" && (
         <Results
