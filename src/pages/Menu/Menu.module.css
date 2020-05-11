@@ -2,19 +2,24 @@
   display: grid;
   grid-gap: 3vh;
   grid-template-columns: auto;
-  /* margin: auto; */
 }
 
-.menu__item_left {
-  clear: both;
-  margin: auto;
+.menu__input {
+  width: 40vw;
 }
 
-.menu__item_centered {
-  clear: both;
+@media only screen and (min-width: 1000px) {
+  .menu__input {
+    width: 30vw;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .menu__input {
+    width: 20vw;
+  }
+}
+
+.menu__itemContainer {
   margin: auto;
-  /* display: flex;
-  justify-content: center;
-  width: 100%;
-  align-items: center; */
 }

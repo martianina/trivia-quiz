@@ -11,20 +11,17 @@ const Textfield = ({
   value,
   helperText,
   error,
+  className,
 }) => {
-  const useStyles = makeStyles((theme) => ({
-    root: style,
-  }));
-
-  const classes = useStyles();
   return (
     <div>
       <TextField
+        className={className}
         error={error}
         label={label}
         variant={variant}
-        classes={classes}
         onChange={onChange}
+        inputProps={{ style: style }}
         type={type}
         value={value}
         helperText={error ? helperText : ""}

@@ -11,5 +11,5 @@ export const types = [
   { name: "True / False", value: "boolean" },
 ];
 
-export const textFieldStyle = { width: "80vw" };
-export const dropdownStyle = { width: "80vw" };
+export const textFieldStyle = {};
+export const dropdownStyle = {};

@@ -11,6 +11,7 @@ const Dropdown = ({
   listboxStyle,
   onChange,
   value,
+  className,
 }) => {
   const useStyles = makeStyles((theme) => ({
     inputRoot: inputStyle,
@@ -23,6 +24,7 @@ const Dropdown = ({
       <Autocomplete
         options={options}
         classes={classes}
+        className={className}
         getOptionLabel={(option) => option.name}
         onChange={onChange}
         value={value}
