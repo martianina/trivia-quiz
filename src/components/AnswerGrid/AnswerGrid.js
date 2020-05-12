@@ -12,7 +12,7 @@ const AnswerGrid = ({
   return (
     <div className={styles.answerGrid}>
       <AnswerButton
-        label={isBoolean ? answers[1] : answers[0]}
+        label={isBoolean ? answers && answers[1] : answers && answers[0]}
         variant="contained"
         onClick={
           isBoolean
@@ -26,7 +26,7 @@ const AnswerGrid = ({
         }`}
       />
       <AnswerButton
-        label={isBoolean ? answers[0] : answers[1]}
+        label={isBoolean ? answers && answers[0] : answers && answers[1]}
         variant="contained"
         onClick={
           isBoolean
@@ -41,7 +41,7 @@ const AnswerGrid = ({
       />
       {!isBoolean && (
         <AnswerButton
-          label={answers[2]}
+          label={answers && answers[2]}
           variant="contained"
           onClick={() => setSelectedAnswerIndex(2)}
           color={`${selectedAnswerIndex === 2 && "secondary"}`}
@@ -49,7 +49,7 @@ const AnswerGrid = ({
       )}
       {!isBoolean && (
         <AnswerButton
-          label={answers[3]}
+          label={answers && answers[3]}
           variant="contained"
           onClick={() => setSelectedAnswerIndex(3)}
           color={`${selectedAnswerIndex === 3 && "secondary"}`}

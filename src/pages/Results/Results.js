@@ -9,10 +9,14 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
     setCurrentPage("menu");
   };
 
-  console.log({ quizData });
+  let finalScore = 0;
+  for (let _ of quizData) {
+    if (_.answers[_.selectedAnswerIndex] == _.correctAnswer) finalScore += 1;
+  }
+
   return (
     <div className={styles.results}>
-      <Title title={"Placeholder Results Title"} />
+      <Title title={`Final Score: ${finalScore}/${quizData.length}`} />
       <Button
         label={"Restart"}
         variant="contained"

@@ -6,4 +6,5 @@ export const htmlsToReplace = {
   "&Uuml;": "Ü",
   "&ldquo;": `"`,
   "&#039;": `'`,
+  "&euml;": `ë`,
 };

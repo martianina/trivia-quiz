@@ -34,23 +34,24 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
     );
   };
 
-  // const selectAnswer = (value) => {
-  //   let modifiedQuizData = quizData;
-  //   modifiedQuizData[questionId].selectedAnswerIndex = value;
-  //   setQuizData(modifiedQuizData);
-  // };
-
-  // const onClickNextButton = () => {
-  //   setSelectedAnswerIndex(null);
-  //   incrementQuestionId();
-  // };
+  const onClickNextButton = () => {
+    setSelectedAnswerIndex(null);
+    incrementQuestionId();
+  };
 
   const onClickRestartButton = () => {
     setQuizData(null);
     setCurrentPage("menu");
   };
 
-  // const selectedAnswerIndex = quizData[questionId].selectedAnswerIndex;
+  useEffect(() => {
+    let modifiedQuizData = quizData;
+    if (questionId) {
+      modifiedQuizData[questionId].selectedAnswerIndex = selectedAnswerIndex;
+      setQuizData(modifiedQuizData);
+    }
+  }, [selectedAnswerIndex]);
+
   return (
     <div>
       {quizData && (
@@ -80,11 +81,13 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
               label={questionId < quizData.length - 1 ? "NEXT" : "FINISH"}
               variant="contained"
               color="primary"
-              onClick={
+              onClick={() => {
                 questionId <= quizData.length - 1
-                  ? incrementQuestionId
-                  : setCurrentPage("results")
-              }
+                  ? selectedAnswerIndex || selectedAnswerIndex === 0
+                    ? onClickNextButton()
+                    : alert("Please select one answer first!")
+                  : setCurrentPage("results");
+              }}
             />
           </div>
         </div>
