@@ -9,6 +9,8 @@ import _ from "lodash";
 
 const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
   const [questionId, setQuestionId] = useState(0);
+  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+
   const incrementQuestionId = () => setQuestionId(questionId + 1);
 
   const removeHTMLCharacters = (string, htmlToReplace) => {
@@ -32,11 +34,23 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
     );
   };
 
-  const onRestart = () => {
+  // const selectAnswer = (value) => {
+  //   let modifiedQuizData = quizData;
+  //   modifiedQuizData[questionId].selectedAnswerIndex = value;
+  //   setQuizData(modifiedQuizData);
+  // };
+
+  // const onClickNextButton = () => {
+  //   setSelectedAnswerIndex(null);
+  //   incrementQuestionId();
+  // };
+
+  const onClickRestartButton = () => {
     setQuizData(null);
     setCurrentPage("menu");
   };
 
+  // const selectedAnswerIndex = quizData[questionId].selectedAnswerIndex;
   return (
     <div>
       {quizData && (
@@ -52,13 +66,15 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
               quizData[questionId] &&
               quizData[questionId].answers.map((_) => convertToRegularString(_))
             }
+            selectedAnswerIndex={selectedAnswerIndex}
+            setSelectedAnswerIndex={setSelectedAnswerIndex}
           />
           <div className={styles.questions__buttonsContainer}>
             <RestartButton
               label="RESTART"
               variant="contained"
               color="primary"
-              onClick={onRestart}
+              onClick={onClickRestartButton}
             />
             <NextButton
               label={questionId < quizData.length - 1 ? "NEXT" : "FINISH"}

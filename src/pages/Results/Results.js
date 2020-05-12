@@ -9,6 +9,7 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
     setCurrentPage("menu");
   };
 
+  console.log({ quizData });
   return (
     <div className={styles.results}>
       <Title title={"Placeholder Results Title"} />

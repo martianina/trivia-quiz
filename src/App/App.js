@@ -19,7 +19,14 @@ function App() {
     value: null,
   });
 
-  const [quizData, setQuizData] = useState(null);
+  const [quizData, setQuizData] = useState([
+    {
+      question: "",
+      answers: [],
+      correctAnswer: "",
+      selectedAnswerIndex: null,
+    },
+  ]);
 
   const [currentPage, setCurrentPage] = useState("menu");
 
@@ -41,7 +48,6 @@ function App() {
   const startQuiz = () => {
     setCurrentPage("questions");
     if (isFormValid) {
-      console.log({});
       fetch(
         `https://opentdb.com/api.php?amount=${numberOfQuestions}${
           category && category.id ? `&category=${category.id}` : ""
@@ -60,7 +66,7 @@ function App() {
                 question: _.question,
                 answers: _.incorrect_answers.concat(_.correct_answer).sort(),
                 correctAnswer: _.correct_answer,
-                selectedAnswers: {},
+                selectedAnswerIndex: null,
               };
             })
           )
