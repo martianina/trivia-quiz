@@ -11,7 +11,7 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
 
   let finalScore = 0;
   for (let _ of quizData) {
-    if (_.answers[_.selectedAnswerIndex] == _.correctAnswer) finalScore += 1;
+    if (_.answers[_.selectedAnswerIndex] === _.correctAnswer) finalScore += 1;
   }
 
   return (

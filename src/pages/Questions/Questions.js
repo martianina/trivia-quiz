@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
 import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
 import NextButton from "../../components/common/buttons/Button/Button";
@@ -37,6 +38,13 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
   const onClickNextButton = () => {
     setSelectedAnswerIndex(null);
     incrementQuestionId();
+    setQuizData(
+      quizData.map((object, index) =>
+        index === questionId
+          ? { ...quizData[questionId], selectedAnswerIndex }
+          : object
+      )
+    );
   };
 
   const onClickRestartButton = () => {
@@ -44,17 +52,9 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
     setCurrentPage("menu");
   };
 
-  useEffect(() => {
-    let modifiedQuizData = quizData;
-    if (questionId) {
-      modifiedQuizData[questionId].selectedAnswerIndex = selectedAnswerIndex;
-      setQuizData(modifiedQuizData);
-    }
-  }, [selectedAnswerIndex]);
-
   return (
     <div>
-      {quizData && (
+      {quizData && quizData.length > 0 ? (
         <div className={styles.questions}>
           <Title
             title={`${questionId + 1}. ${
@@ -82,7 +82,7 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
               variant="contained"
               color="primary"
               onClick={() => {
-                questionId <= quizData.length - 1
+                questionId < quizData.length - 1
                   ? selectedAnswerIndex || selectedAnswerIndex === 0
                     ? onClickNextButton()
                     : alert("Please select one answer first!")
@@ -91,6 +91,17 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
             />
           </div>
         </div>
+      ) : (
+        <LoadingIndicator
+          size="10vh"
+          label={`${quizData ? "No Questions Available" : "Questions Loading"}`}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+          onRestart={quizData ? onClickRestartButton : null}
+        />
       )}
     </div>
   );

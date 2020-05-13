@@ -7,7 +7,7 @@ const AnswerGrid = ({
   setSelectedAnswerIndex,
   selectedAnswerIndex,
 }) => {
-  const isBoolean = answers && answers.length == 2;
+  const isBoolean = answers && answers.length === 2;
 
   return (
     <div className={styles.answerGrid}>

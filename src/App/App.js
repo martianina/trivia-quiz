@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Menu from "../pages/Menu/Menu";
 import Questions from "../pages/Questions/Questions";
 import Results from "../pages/Results/Results";
@@ -19,14 +19,7 @@ function App() {
     value: null,
   });
 
-  const [quizData, setQuizData] = useState([
-    {
-      question: "",
-      answers: [],
-      correctAnswer: "",
-      selectedAnswerIndex: null,
-    },
-  ]);
+  const [quizData, setQuizData] = useState(null);
 
   const [currentPage, setCurrentPage] = useState("menu");
 
@@ -43,7 +36,7 @@ function App() {
   const isFormValid =
     numberOfQuestions >= 1 &&
     numberOfQuestions <= 50 &&
-    numberOfQuestions % 1 == 0;
+    numberOfQuestions % 1 === 0;
 
   const startQuiz = () => {
     setCurrentPage("questions");
@@ -61,11 +54,14 @@ function App() {
         // .then((data) => console.log({ data }));
         .then((data) =>
           setQuizData(
-            data.results.map((_) => {
+            data.results.map((object, index) => {
               return {
-                question: _.question,
-                answers: _.incorrect_answers.concat(_.correct_answer).sort(),
-                correctAnswer: _.correct_answer,
+                questionNumber: index,
+                question: object.question,
+                answers: object.incorrect_answers
+                  .concat(object.correct_answer)
+                  .sort(),
+                correctAnswer: object.correct_answer,
                 selectedAnswerIndex: null,
               };
             })
@@ -73,10 +69,6 @@ function App() {
         );
     } else alert("Fix all errors before clicking START.");
   };
-
-  // useEffect(() => {
-  //   if (quizData && currentPage === "menu") setCurrentPage("questions");
-  // }, [quizData]);
 
   const menuActions = {
     changeNumberOfQuestions,

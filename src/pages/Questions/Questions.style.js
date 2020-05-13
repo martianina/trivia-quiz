@@ -7,4 +7,5 @@ export const htmlsToReplace = {
   "&ldquo;": `"`,
   "&#039;": `'`,
   "&euml;": `ë`,
+  "&rdquo;": `”`,
 };

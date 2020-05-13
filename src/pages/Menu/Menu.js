@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
 import NumberOfQuestionsField from "../../components/common/inputs/Textfield/Textfield";
 import CategoryDropdown from "../../components/common/inputs/Dropdown/Dropdown";
@@ -28,7 +29,7 @@ const Menu = ({ menuActions, menuState }) => {
 
   return (
     <div>
-      {categories && (
+      {categories ? (
         <div className={styles.menu}>
           <div className={styles.menu__itemContainer}>
             <Title title="Welcome to Anthony Hien Vu's Quiz!" />
@@ -88,6 +89,16 @@ const Menu = ({ menuActions, menuState }) => {
             />
           </div>
         </div>
+      ) : (
+        <LoadingIndicator
+          size="10vh"
+          label="Menu Loading"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        />
       )}
     </div>
   );
