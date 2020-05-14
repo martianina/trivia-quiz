@@ -5,7 +5,7 @@ import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
 import NextButton from "../../components/common/buttons/Button/Button";
 import RestartButton from "../../components/common/buttons/Button/Button";
 import styles from "./Questions.module.css";
-import * as style from "./Questions.style";
+import { convertToRegularString } from "../../modules/StringModifiers";
 import _ from "lodash";
 
 const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
@@ -13,27 +13,6 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
 
   const incrementQuestionId = () => setQuestionId(questionId + 1);
-
-  const removeHTMLCharacters = (string, htmlToReplace) => {
-    let modifiedString = string;
-    for (let [html, replacementString] of Object.entries(htmlToReplace)) {
-      modifiedString = _.replace(
-        modifiedString,
-        new RegExp(html, "g"),
-        replacementString
-      );
-    }
-    return modifiedString;
-  };
-
-  const convertToRegularString = (string) => {
-    return removeHTMLCharacters(
-      string.replace(/&#(?:x([\da-f]+)|(\d+));/gi, function (_, hex, dec) {
-        return String.fromCharCode(dec || +("0x" + hex));
-      }),
-      style.htmlsToReplace
-    );
-  };
 
   const onClickNextButton = () => {
     setSelectedAnswerIndex(null);
@@ -52,6 +31,16 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
     setCurrentPage("menu");
   };
 
+  const onClickFinishButton = () => {
+    setCurrentPage("results");
+    setQuizData(
+      quizData.map((object, index) =>
+        index === questionId
+          ? { ...quizData[questionId], selectedAnswerIndex }
+          : object
+      )
+    );
+  };
   return (
     <div>
       {quizData && quizData.length > 0 ? (
@@ -86,7 +75,9 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
                   ? selectedAnswerIndex || selectedAnswerIndex === 0
                     ? onClickNextButton()
                     : alert("Please select one answer first!")
-                  : setCurrentPage("results");
+                  : selectedAnswerIndex || selectedAnswerIndex === 0
+                  ? onClickFinishButton()
+                  : alert("Please select one answer first!");
               }}
             />
           </div>
