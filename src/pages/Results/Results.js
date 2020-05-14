@@ -30,8 +30,7 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
 
   return (
     <div className={styles.results}>
-      {/* <Title title={`Final Score: ${getFinalScore()}/${quizData.length}`} /> */}
-
+      <Title title={`Final Score: ${getFinalScore()}/${quizData.length}`} />
       <Table columns={columns} data={data} title="Overview of Results" />
       <Button
         label={"Restart"}

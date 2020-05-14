@@ -18,7 +18,7 @@ const Table = ({ title, columns, data }) => {
       name: name,
       label: name.charAt(0).toUpperCase() + name.slice(1),
       options: {
-        filter: true,
+        // filter: true,
         sort: true,
       },
     };
@@ -38,10 +38,22 @@ const Table = ({ title, columns, data }) => {
   }
 
   const options = {
-    filterType: "checkbox",
-    setRowProps: (row, dataIndex) => {},
+    // filterType: "checkbox",
+    filter: false,
+    setRowProps: (row, dataIndex) => {
+      let backgroundColor;
+      if (row[2] === row[3])
+        // if selected answer is same as correct answer
+        backgroundColor = "#e0ffd9";
+      // Light-green
+      else backgroundColor = "#ffe6e6"; // Light-red
+      return {
+        style: { backgroundColor },
+      };
+    },
     responsive: "scroll",
   };
+
   return (
     <ThemeProvider theme={tableTheme}>
       <MUIDataTable
