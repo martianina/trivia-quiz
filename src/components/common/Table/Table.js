@@ -18,8 +18,16 @@ const Table = ({ title, columns, data }) => {
       name: name,
       label: name.charAt(0).toUpperCase() + name.slice(1),
       options: {
-        // filter: true,
+        filter: true,
         sort: true,
+        setCellHeaderProps: (columnMeta) => {
+          return {
+            style: {
+              fontWeight: "bold",
+              color: "#3F51B5",
+            },
+          };
+        },
       },
     };
   });

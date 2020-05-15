@@ -1,13 +1,19 @@
-.questions {
+.questionsContainer {
   display: flex;
   flex-direction: column;
   height: 100vh;
   align-items: center;
   justify-content: center;
+  padding: 1vh;
 }
 
 .questions__buttonsContainer {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 2vh;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 0.5vw;
+}
+
+.questions__title {
+  position: relative;
+  bottom: 1.5vh;
 }

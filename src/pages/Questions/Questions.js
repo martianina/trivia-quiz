@@ -1,22 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
+import LeftArrowIconButton from "../../components/common/buttons/iconButtons/LeftArrowIconButton";
+import RestartIconButton from "../../components/common/buttons/iconButtons/RestartIconButton";
+import RightArrowIconButton from "../../components/common/buttons/iconButtons/RightArrowIconButton";
 import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
-import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
-import NextButton from "../../components/common/buttons/Button/Button";
-import RestartButton from "../../components/common/buttons/Button/Button";
-import styles from "./Questions.module.css";
 import { convertToRegularString } from "../../modules/StringModifiers";
-import _ from "lodash";
+import styles from "./Questions.module.css";
 
 const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
   const [questionId, setQuestionId] = useState(0);
-  const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
 
+  const selectedAnswerIndex =
+    quizData && quizData[questionId].selectedAnswerIndex;
   const incrementQuestionId = () => setQuestionId(questionId + 1);
+  const decrementQuestionId = () => setQuestionId(questionId - 1);
+
+  const onClickBackButton = () => {
+    if (
+      quizData[questionId].selectedAnswerIndex ||
+      quizData[questionId].selectedAnswerIndex === 0
+    )
+      setSelectedAnswerIndex(quizData[questionId].selectedAnswerIndex);
+    else setSelectedAnswerIndex(null);
+    decrementQuestionId();
+  };
 
   const onClickNextButton = () => {
-    setSelectedAnswerIndex(null);
+    if (
+      quizData[questionId].selectedAnswerIndex ||
+      quizData[questionId].selectedAnswerIndex === 0
+    )
+      setSelectedAnswerIndex(quizData[questionId].selectedAnswerIndex);
+    else setSelectedAnswerIndex(null);
     incrementQuestionId();
+  };
+
+  const setSelectedAnswerIndex = (selectedAnswerIndex) =>
     setQuizData(
       quizData.map((object, index) =>
         index === questionId
@@ -24,7 +44,6 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
           : object
       )
     );
-  };
 
   const onClickRestartButton = () => {
     setQuizData(null);
@@ -33,24 +52,19 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
 
   const onClickFinishButton = () => {
     setCurrentPage("results");
-    setQuizData(
-      quizData.map((object, index) =>
-        index === questionId
-          ? { ...quizData[questionId], selectedAnswerIndex }
-          : object
-      )
-    );
   };
   return (
     <div>
       {quizData && quizData.length > 0 ? (
-        <div className={styles.questions}>
-          <Title
-            title={`${questionId + 1}. ${
-              quizData[questionId] &&
-              convertToRegularString(quizData[questionId].question)
-            }`}
-          />
+        <div className={styles.questionsContainer}>
+          <div className={styles.questions__title}>
+            <Title
+              title={`${questionId + 1}. ${
+                quizData[questionId] &&
+                convertToRegularString(quizData[questionId].question)
+              }`}
+            />
+          </div>
           <AnswerGrid
             answers={
               quizData[questionId] &&
@@ -60,15 +74,22 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
             setSelectedAnswerIndex={setSelectedAnswerIndex}
           />
           <div className={styles.questions__buttonsContainer}>
-            <RestartButton
-              label="RESTART"
-              variant="contained"
-              color="primary"
-              onClick={onClickRestartButton}
-            />
-            <NextButton
-              label={questionId < quizData.length - 1 ? "NEXT" : "FINISH"}
-              variant="contained"
+            {questionId !== 0 && (
+              <LeftArrowIconButton
+                tooltipTitle="Go to previous question"
+                color="primary"
+                onClick={() => {
+                  onClickBackButton();
+                }}
+                iconStyle={{ fontSize: "4vh" }}
+              />
+            )}
+            <RightArrowIconButton
+              tooltipTitle={
+                questionId < quizData.length - 1
+                  ? "Go to next question"
+                  : "Finish quiz"
+              }
               color="primary"
               onClick={() => {
                 questionId < quizData.length - 1
@@ -79,6 +100,13 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
                   ? onClickFinishButton()
                   : alert("Please select one answer first!");
               }}
+              iconStyle={{ fontSize: "4vh" }}
+            />
+            <RestartIconButton
+              tooltipTitle="Restart Quiz"
+              color="primary"
+              onClick={() => onClickRestartButton()}
+              iconStyle={{ fontSize: "4vh" }}
             />
           </div>
         </div>
