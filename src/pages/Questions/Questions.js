@@ -5,6 +5,7 @@ import RestartIconButton from "../../components/common/buttons/iconButtons/Resta
 import RightArrowIconButton from "../../components/common/buttons/iconButtons/RightArrowIconButton";
 import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
+import ProgressBar from "../../components/common/progress/ProgressBar";
 import { convertToRegularString } from "../../modules/StringModifiers";
 import styles from "./Questions.module.css";
 
@@ -109,6 +110,7 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
               iconStyle={{ fontSize: "4vh" }}
             />
           </div>
+          <ProgressBar value={questionId + 1} total={quizData.length} />
         </div>
       ) : (
         <LoadingIndicator
