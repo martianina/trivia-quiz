@@ -1,14 +1,7 @@
 .bar {
-  /* position: absolute; */
   width: 25vw;
-  min-width: 25vw;
-  /* align-items: center; */
-  color: green !important;
 }
 
-& > .bar {
-  color: green !important;
-}
 .progressText {
   text-align: center;
   position: relative;

@@ -45,7 +45,7 @@ const Menu = ({ menuActions, menuState }) => {
               style={style.textFieldStyle}
               value={menuState.numberOfQuestions}
               helperText="Error: Number must be an integer less than or equal to 50."
-              error={!menuState.isFormValid}
+              error={!menuState.isNumberOfQuestionsValid}
               className={styles.menu__input}
             />
           </div>

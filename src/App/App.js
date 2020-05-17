@@ -40,15 +40,16 @@ function App() {
     setUseDuration(event.target.value);
   };
 
-  const isFormValid =
-    quizDuration > 0 &&
+  const isNumberOfQuestionsValid =
     numberOfQuestions >= 1 &&
     numberOfQuestions <= 50 &&
     numberOfQuestions % 1 === 0;
 
+  const isFormValid = quizDuration > 0 && isNumberOfQuestionsValid;
+
   const startQuiz = () => {
-    setCurrentPage("questions");
     if (isFormValid) {
+      setCurrentPage("questions");
       fetch(
         `https://opentdb.com/api.php?amount=${numberOfQuestions}${
           category && category.id ? `&category=${category.id}` : ""
@@ -101,6 +102,7 @@ function App() {
     isFormValid,
     useDuration,
     quizDuration,
+    isNumberOfQuestionsValid,
   };
   return (
     <div className={styles.App}>
