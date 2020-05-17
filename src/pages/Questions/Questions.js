@@ -6,11 +6,16 @@ import RightArrowIconButton from "../../components/common/buttons/iconButtons/Ri
 import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
 import ProgressBar from "../../components/common/progress/ProgressBar";
+import ConfirmationPrompt from "../../components/common/modals/ConfirmationModal";
 import { convertToRegularString } from "../../modules/StringModifiers";
 import styles from "./Questions.module.css";
 
-const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
+const Questions = ({ quizData, setQuizData, setCurrentPage, restartQuiz }) => {
   const [questionId, setQuestionId] = useState(0);
+  const [confirmationPrompt, setconfirmationPrompt] = useState(false);
+
+  const toggleConfirmationPrompt = () =>
+    setconfirmationPrompt(!confirmationPrompt);
 
   const selectedAnswerIndex =
     quizData && quizData[questionId].selectedAnswerIndex;
@@ -46,84 +51,96 @@ const Questions = ({ quizData, setQuizData, setCurrentPage }) => {
       )
     );
 
-  const onClickRestartButton = () => {
-    setQuizData(null);
-    setCurrentPage("menu");
-  };
+  // const onClickRestartButton = () => {
+  //   setQuizData(null);
+  //   setCurrentPage("menu");
+  // };
 
   const onClickFinishButton = () => {
     setCurrentPage("results");
   };
   return (
     <div>
-      {quizData && quizData.length > 0 ? (
-        <div className={styles.questionsContainer}>
-          <div className={styles.questions__title}>
-            <Title
-              title={`${questionId + 1}. ${
+      <div>
+        {quizData && quizData.length > 0 ? (
+          <div className={styles.questionsContainer}>
+            <div className={styles.questions__title}>
+              <Title
+                title={`${questionId + 1}. ${
+                  quizData[questionId] &&
+                  convertToRegularString(quizData[questionId].question)
+                }`}
+              />
+            </div>
+            <AnswerGrid
+              answers={
                 quizData[questionId] &&
-                convertToRegularString(quizData[questionId].question)
-              }`}
+                quizData[questionId].answers.map((_) =>
+                  convertToRegularString(_)
+                )
+              }
+              selectedAnswerIndex={selectedAnswerIndex}
+              setSelectedAnswerIndex={setSelectedAnswerIndex}
             />
-          </div>
-          <AnswerGrid
-            answers={
-              quizData[questionId] &&
-              quizData[questionId].answers.map((_) => convertToRegularString(_))
-            }
-            selectedAnswerIndex={selectedAnswerIndex}
-            setSelectedAnswerIndex={setSelectedAnswerIndex}
-          />
-          <div className={styles.questions__buttonsContainer}>
-            {questionId !== 0 && (
-              <LeftArrowIconButton
-                tooltipTitle="Go to previous question"
+            <div className={styles.questions__buttonsContainer}>
+              {questionId !== 0 && (
+                <LeftArrowIconButton
+                  tooltipTitle="Go to previous question"
+                  color="primary"
+                  onClick={() => {
+                    onClickBackButton();
+                  }}
+                  iconStyle={{ fontSize: "4vh" }}
+                />
+              )}
+              <RightArrowIconButton
+                tooltipTitle={
+                  questionId < quizData.length - 1
+                    ? "Go to next question"
+                    : "Finish quiz"
+                }
                 color="primary"
                 onClick={() => {
-                  onClickBackButton();
+                  questionId < quizData.length - 1
+                    ? selectedAnswerIndex || selectedAnswerIndex === 0
+                      ? onClickNextButton()
+                      : alert("Please select one answer first!")
+                    : selectedAnswerIndex || selectedAnswerIndex === 0
+                    ? onClickFinishButton()
+                    : alert("Please select one answer first!");
                 }}
                 iconStyle={{ fontSize: "4vh" }}
               />
-            )}
-            <RightArrowIconButton
-              tooltipTitle={
-                questionId < quizData.length - 1
-                  ? "Go to next question"
-                  : "Finish quiz"
-              }
-              color="primary"
-              onClick={() => {
-                questionId < quizData.length - 1
-                  ? selectedAnswerIndex || selectedAnswerIndex === 0
-                    ? onClickNextButton()
-                    : alert("Please select one answer first!")
-                  : selectedAnswerIndex || selectedAnswerIndex === 0
-                  ? onClickFinishButton()
-                  : alert("Please select one answer first!");
-              }}
-              iconStyle={{ fontSize: "4vh" }}
-            />
-            <RestartIconButton
-              tooltipTitle="Restart Quiz"
-              color="primary"
-              onClick={() => onClickRestartButton()}
-              iconStyle={{ fontSize: "4vh" }}
-            />
+              <RestartIconButton
+                tooltipTitle="Restart Quiz"
+                color="primary"
+                onClick={() => toggleConfirmationPrompt()}
+                iconStyle={{ fontSize: "4vh" }}
+              />
+            </div>
+            <ProgressBar value={questionId + 1} total={quizData.length} />
           </div>
-          <ProgressBar value={questionId + 1} total={quizData.length} />
-        </div>
-      ) : (
-        <LoadingIndicator
-          size="10vh"
-          label={`${quizData ? "No Questions Available" : "Questions Loading"}`}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-          onRestart={quizData ? onClickRestartButton : null}
-        />
-      )}
+        ) : (
+          <LoadingIndicator
+            size="10vh"
+            label={`${
+              quizData ? "No Questions Available" : "Questions Loading"
+            }`}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+            onRestart={quizData ? restartQuiz() : null}
+          />
+        )}
+      </div>
+      <ConfirmationPrompt
+        title="Are you sure you want to restart the quiz?"
+        open={confirmationPrompt}
+        toggleConfirmationPrompt={toggleConfirmationPrompt}
+        onRestart={restartQuiz}
+      />
     </div>
   );
 };

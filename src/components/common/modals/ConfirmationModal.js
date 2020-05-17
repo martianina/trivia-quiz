@@ -7,31 +7,39 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
 const ConfirmationModalComponent = ({
+  title,
+  text,
   open,
-  toggleConfirmationModal,
+  toggleConfirmationPrompt,
   onRestart,
 }) => {
   return (
     <div>
       <Dialog
         open={open}
-        onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to restart the quiz?
+            {text}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={toggleConfirmationModal} color="primary">
+        <DialogActions style={{ justifyContent: "center" }}>
+          <Button
+            onClick={toggleConfirmationPrompt}
+            color="primary"
+            style={{ fontWeight: "bold" }}
+          >
             Cancel
           </Button>
-          <Button onClick={onRestart} color="primary" autoFocus>
+          <Button
+            onClick={onRestart}
+            color="primary"
+            autoFocus
+            style={{ fontWeight: "bold" }}
+          >
             Yes
           </Button>
         </DialogActions>

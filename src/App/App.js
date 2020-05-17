@@ -70,6 +70,11 @@ function App() {
     } else alert("Fix all errors before clicking START.");
   };
 
+  const restartQuiz = () => {
+    setQuizData(null);
+    setCurrentPage("menu");
+  };
+
   const menuActions = {
     changeNumberOfQuestions,
     changeCategory,
@@ -95,6 +100,7 @@ function App() {
           quizData={quizData}
           setQuizData={setQuizData}
           setCurrentPage={setCurrentPage}
+          restartQuiz={restartQuiz}
         />
       )}
       {currentPage === "results" && (

@@ -8,11 +8,11 @@ const GenericButton = ({
   color,
   onClick,
   style,
-  // labelStyle,
+  labelStyle,
 }) => {
   const useStyles = makeStyles((theme) => ({
-    root: style,
-    // label: labelStyle,
+    root: { ...style, textTransform: "none" },
+    label: labelStyle,
   }));
 
   const classes = useStyles();
