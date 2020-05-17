@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Menu from "../pages/Menu/Menu";
 import Questions from "../pages/Questions/Questions";
 import Results from "../pages/Results/Results";
+import AlertPrompt from "../components/common/modals/Alert";
 import styles from "./App.module.css";
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
   const [useDuration, setUseDuration] = useState("no");
   const [quizDuration, setQuizDuration] = useState(10);
   const [currentPage, setCurrentPage] = useState("menu");
+  const [errorPrompt, setErrorPrompt] = useState(false);
+
+  const toggleErrorPrompt = () => setErrorPrompt(!errorPrompt);
 
   const changeNumberOfQuestions = (event) =>
     setNumberOfQuestions(parseFloat(event.target.value));
@@ -76,7 +80,7 @@ function App() {
             })
           )
         );
-    } else alert("Fix all errors before clicking START.");
+    } else toggleErrorPrompt();
   };
 
   const restartQuiz = () => {
@@ -127,6 +131,12 @@ function App() {
           restartQuiz={restartQuiz}
         />
       )}
+      <AlertPrompt
+        title="Error"
+        text="Please fix all errors before clicking start."
+        open={errorPrompt}
+        togglePrompt={toggleErrorPrompt}
+      />
     </div>
   );
 }

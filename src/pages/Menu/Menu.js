@@ -31,100 +31,102 @@ const Menu = ({ menuActions, menuState }) => {
 
   return (
     <div>
-      {categories ? (
-        <div className={styles.menu}>
-          <div className={styles.menu__itemContainer}>
-            <Title title="Welcome to Anthony Hien Vu's Quiz!" />
-          </div>
-          <div className={styles.menu__itemContainer}>
-            <NumberOfQuestionsField
-              label="Number of questions:"
-              variant="outlined"
-              type="number"
-              onChange={menuActions.changeNumberOfQuestions}
-              style={style.textFieldStyle}
-              value={menuState.numberOfQuestions}
-              helperText="Error: Number must be an integer less than or equal to 50."
-              error={!menuState.isNumberOfQuestionsValid}
-              className={styles.menu__input}
-            />
-          </div>
-          <div className={styles.menu__itemContainer}>
-            <CategoryDropdown
-              options={categories}
-              label="Category:"
-              variant="outlined"
-              inputStyle={style.dropdownStyle}
-              onChange={menuActions.changeCategory}
-              value={menuState.category}
-              className={styles.menu__input}
-            />
-          </div>
-          <div className={styles.menu__itemContainer}>
-            <DifficultyDropdown
-              options={style.difficulties}
-              label="Difficulty:"
-              variant="outlined"
-              inputStyle={style.dropdownStyle}
-              onChange={menuActions.changeDifficulty}
-              value={menuState.difficulty}
-              className={styles.menu__input}
-            />
-          </div>
-          <div className={styles.menu__itemContainer}>
-            <TypeDropdown
-              options={style.types}
-              label="Question type:"
-              variant="outlined"
-              inputStyle={style.dropdownStyle}
-              onChange={menuActions.changeType}
-              value={menuState.type}
-              className={styles.menu__input}
-            />
-          </div>
-          <div className={styles.menu__itemContainerForSetTimeLimit}>
-            <ToggleDuration
-              label="Set time limit?"
-              values={["yes", "no"]}
-              value={menuState.useDuration}
-              onChange={menuActions.changeUseDuration}
-            />
-          </div>
-          {menuState.useDuration === "yes" && (
+      <div>
+        {categories ? (
+          <div className={styles.menu}>
             <div className={styles.menu__itemContainer}>
-              <DurationInput
-                label="Time limit (in minutes):"
+              <Title title="Welcome to Anthony Hien Vu's Quiz!" />
+            </div>
+            <div className={styles.menu__itemContainer}>
+              <NumberOfQuestionsField
+                label="Number of questions:"
                 variant="outlined"
                 type="number"
-                onChange={menuActions.changeQuizDuration}
+                onChange={menuActions.changeNumberOfQuestions}
                 style={style.textFieldStyle}
-                value={menuState.quizDuration}
-                helperText="Error: Number must be greater than 0."
-                error={!(menuState.quizDuration > 0)}
+                value={menuState.numberOfQuestions}
+                helperText="Error: Number must be an integer less than or equal to 50."
+                error={!menuState.isNumberOfQuestionsValid}
                 className={styles.menu__input}
               />
             </div>
-          )}
-          <div className={styles.menu__itemContainer}>
-            <StartQuizButton
-              label="Start"
-              variant="contained"
-              onClick={menuActions.startQuiz}
-              color="primary"
-            />
+            <div className={styles.menu__itemContainer}>
+              <CategoryDropdown
+                options={categories}
+                label="Category:"
+                variant="outlined"
+                inputStyle={style.dropdownStyle}
+                onChange={menuActions.changeCategory}
+                value={menuState.category}
+                className={styles.menu__input}
+              />
+            </div>
+            <div className={styles.menu__itemContainer}>
+              <DifficultyDropdown
+                options={style.difficulties}
+                label="Difficulty:"
+                variant="outlined"
+                inputStyle={style.dropdownStyle}
+                onChange={menuActions.changeDifficulty}
+                value={menuState.difficulty}
+                className={styles.menu__input}
+              />
+            </div>
+            <div className={styles.menu__itemContainer}>
+              <TypeDropdown
+                options={style.types}
+                label="Question type:"
+                variant="outlined"
+                inputStyle={style.dropdownStyle}
+                onChange={menuActions.changeType}
+                value={menuState.type}
+                className={styles.menu__input}
+              />
+            </div>
+            <div className={styles.menu__itemContainerForSetTimeLimit}>
+              <ToggleDuration
+                label="Set time limit?"
+                values={["yes", "no"]}
+                value={menuState.useDuration}
+                onChange={menuActions.changeUseDuration}
+              />
+            </div>
+            {menuState.useDuration === "yes" && (
+              <div className={styles.menu__itemContainer}>
+                <DurationInput
+                  label="Time limit (in minutes):"
+                  variant="outlined"
+                  type="number"
+                  onChange={menuActions.changeQuizDuration}
+                  style={style.textFieldStyle}
+                  value={menuState.quizDuration}
+                  helperText="Error: Number must be greater than 0."
+                  error={!(menuState.quizDuration > 0)}
+                  className={styles.menu__input}
+                />
+              </div>
+            )}
+            <div className={styles.menu__itemContainer}>
+              <StartQuizButton
+                label="Start"
+                variant="contained"
+                onClick={menuActions.startQuiz}
+                color="primary"
+              />
+            </div>
           </div>
-        </div>
-      ) : (
-        <LoadingIndicator
-          size="10vh"
-          label="Menu Loading"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        />
-      )}
+        ) : (
+          <LoadingIndicator
+            size="10vh"
+            label="Menu Loading"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -6,7 +6,8 @@ import RightArrowIconButton from "../../components/common/buttons/iconButtons/Ri
 import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIndicator";
 import Title from "../../components/common/Title/Title";
 import ProgressBar from "../../components/common/progress/ProgressBar";
-import ConfirmationPrompt from "../../components/common/modals/ConfirmationModal";
+import ConfirmationPrompt from "../../components/common/modals/Confirmation";
+import AlertPrompt from "../../components/common/modals/Alert";
 import CountdownClock from "react-countdown-clock";
 import { convertToRegularString } from "../../modules/StringModifiers";
 import styles from "./Questions.module.css";
@@ -22,9 +23,12 @@ const Questions = ({
 }) => {
   const [questionId, setQuestionId] = useState(0);
   const [confirmationPrompt, setconfirmationPrompt] = useState(false);
+  const [alertPrompt, setAlertPrompt] = useState(false);
 
   const toggleConfirmationPrompt = () =>
     setconfirmationPrompt(!confirmationPrompt);
+
+  const toggleAlertPrompt = () => setAlertPrompt(!alertPrompt);
 
   const selectedAnswerIndex =
     quizData && quizData[questionId].selectedAnswerIndex;
@@ -128,10 +132,10 @@ const Questions = ({
                   questionId < quizData.length - 1
                     ? selectedAnswerIndex || selectedAnswerIndex === 0
                       ? onClickNextButton()
-                      : alert("Please select one answer first!")
+                      : toggleAlertPrompt()
                     : selectedAnswerIndex || selectedAnswerIndex === 0
                     ? onClickFinishButton()
-                    : alert("Please select one answer first!");
+                    : toggleAlertPrompt();
                 }}
                 iconStyle={{ fontSize: "4vh" }}
               />
@@ -166,10 +170,17 @@ const Questions = ({
         )}
       </div>
       <ConfirmationPrompt
-        title="Are you sure you want to restart the quiz?"
+        title="Confirmation"
+        text="Are you sure you want to restart the quiz?"
         open={confirmationPrompt}
-        toggleConfirmationPrompt={toggleConfirmationPrompt}
+        togglePrompt={toggleConfirmationPrompt}
         onRestart={restartQuiz}
+      />
+      <AlertPrompt
+        title="Error"
+        text="Please select an answer before clicking next."
+        open={alertPrompt}
+        togglePrompt={toggleAlertPrompt}
       />
     </div>
   );
