@@ -7,10 +7,17 @@ import LoadingIndicator from "../../components/common/LoadingIndicator/LoadingIn
 import Title from "../../components/common/Title/Title";
 import ProgressBar from "../../components/common/progress/ProgressBar";
 import ConfirmationPrompt from "../../components/common/modals/ConfirmationModal";
+import CountdownClock from "react-countdown-clock";
 import { convertToRegularString } from "../../modules/StringModifiers";
 import styles from "./Questions.module.css";
 
-const Questions = ({ quizData, setQuizData, setCurrentPage, restartQuiz }) => {
+const Questions = ({
+  quizData,
+  setQuizData,
+  setCurrentPage,
+  restartQuiz,
+  quizDuration,
+}) => {
   const [questionId, setQuestionId] = useState(0);
   const [confirmationPrompt, setconfirmationPrompt] = useState(false);
 
@@ -51,11 +58,6 @@ const Questions = ({ quizData, setQuizData, setCurrentPage, restartQuiz }) => {
       )
     );
 
-  // const onClickRestartButton = () => {
-  //   setQuizData(null);
-  //   setCurrentPage("menu");
-  // };
-
   const onClickFinishButton = () => {
     setCurrentPage("results");
   };
@@ -64,6 +66,18 @@ const Questions = ({ quizData, setQuizData, setCurrentPage, restartQuiz }) => {
       <div>
         {quizData && quizData.length > 0 ? (
           <div className={styles.questionsContainer}>
+            <div className={styles.questions__countdownTimer}>
+              <CountdownClock
+                seconds={quizDuration * 60}
+                showMilliseconds={true}
+                timeFormat="hms"
+                color="#000"
+                alpha={0.9}
+                size={100}
+                fontSize="auto"
+                onComplete={() => setCurrentPage("results")}
+              />
+            </div>
             <div className={styles.questions__title}>
               <Title
                 title={`${questionId + 1}. ${

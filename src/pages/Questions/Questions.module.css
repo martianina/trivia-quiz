@@ -17,3 +17,8 @@
   position: relative;
   bottom: 1.5vh;
 }
+
+.questions__countdownTimer {
+  position: relative;
+  bottom: 5vh;
+}

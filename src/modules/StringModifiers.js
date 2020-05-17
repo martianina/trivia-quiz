@@ -32,8 +32,9 @@ const removeHTMLCharacters = (string) => {
 
 export const convertToRegularString = (string) => {
   return removeHTMLCharacters(
-    string.replace(/&#(?:x([\da-f]+)|(\d+));/gi, function (_, hex, dec) {
-      return String.fromCharCode(dec || +("0x" + hex));
-    })
+    string &&
+      string.replace(/&#(?:x([\da-f]+)|(\d+));/gi, function (_, hex, dec) {
+        return String.fromCharCode(dec || +("0x" + hex));
+      })
   );
 };

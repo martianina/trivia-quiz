@@ -18,13 +18,15 @@ function App() {
     name: "Any Type",
     value: null,
   });
-
   const [quizData, setQuizData] = useState(null);
-
+  const [quizDuration, setQuizDuration] = useState(10);
   const [currentPage, setCurrentPage] = useState("menu");
 
   const changeNumberOfQuestions = (event) =>
     setNumberOfQuestions(parseFloat(event.target.value));
+
+  const changeQuizDuration = (event) =>
+    setQuizDuration(parseFloat(event.target.value));
 
   const changeCategory = (event, selectedOption) => setCategory(selectedOption);
 
@@ -34,6 +36,7 @@ function App() {
   const changeType = (event, selectedOption) => setType(selectedOption);
 
   const isFormValid =
+    quizDuration > 0 &&
     numberOfQuestions >= 1 &&
     numberOfQuestions <= 50 &&
     numberOfQuestions % 1 === 0;
@@ -82,6 +85,7 @@ function App() {
     changeType,
     setCurrentPage,
     startQuiz,
+    changeQuizDuration,
   };
   const menuState = {
     numberOfQuestions,
@@ -89,6 +93,7 @@ function App() {
     difficulty,
     type,
     isFormValid,
+    quizDuration,
   };
   return (
     <div className={styles.App}>
@@ -101,6 +106,7 @@ function App() {
           setQuizData={setQuizData}
           setCurrentPage={setCurrentPage}
           restartQuiz={restartQuiz}
+          quizDuration={quizDuration}
         />
       )}
       {currentPage === "results" && (

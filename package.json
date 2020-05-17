@@ -12,6 +12,7 @@
     "lodash": "^4.17.15",
     "mui-datatables": "^2.13.3",
     "react": "^16.13.1",
+    "react-countdown-clock": "^2.7.0",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "semantic-ui-css": "^2.4.1",

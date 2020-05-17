@@ -5,6 +5,7 @@ import NumberOfQuestionsField from "../../components/common/inputs/Textfield/Tex
 import CategoryDropdown from "../../components/common/inputs/Dropdown/Dropdown";
 import DifficultyDropdown from "../../components/common/inputs/Dropdown/Dropdown";
 import TypeDropdown from "../../components/common/inputs/Dropdown/Dropdown";
+import DurationInput from "../../components/common/inputs/Textfield/Textfield";
 import StartQuizButton from "../../components/common/buttons/Button/Button";
 import styles from "./Menu.module.css";
 import * as style from "./Menu.style";
@@ -36,7 +37,7 @@ const Menu = ({ menuActions, menuState }) => {
           </div>
           <div className={styles.menu__itemContainer}>
             <NumberOfQuestionsField
-              label="Number of Questions:"
+              label="Number of questions:"
               variant="outlined"
               type="number"
               onChange={menuActions.changeNumberOfQuestions}
@@ -50,7 +51,7 @@ const Menu = ({ menuActions, menuState }) => {
           <div className={styles.menu__itemContainer}>
             <CategoryDropdown
               options={categories}
-              label="Select Category:"
+              label="Category:"
               variant="outlined"
               inputStyle={style.dropdownStyle}
               onChange={menuActions.changeCategory}
@@ -61,7 +62,7 @@ const Menu = ({ menuActions, menuState }) => {
           <div className={styles.menu__itemContainer}>
             <DifficultyDropdown
               options={style.difficulties}
-              label="Select Difficulty:"
+              label="Difficulty:"
               variant="outlined"
               inputStyle={style.dropdownStyle}
               onChange={menuActions.changeDifficulty}
@@ -72,7 +73,7 @@ const Menu = ({ menuActions, menuState }) => {
           <div className={styles.menu__itemContainer}>
             <TypeDropdown
               options={style.types}
-              label="Select Type:"
+              label="Question type:"
               variant="outlined"
               inputStyle={style.dropdownStyle}
               onChange={menuActions.changeType}
@@ -81,8 +82,21 @@ const Menu = ({ menuActions, menuState }) => {
             />
           </div>
           <div className={styles.menu__itemContainer}>
+            <DurationInput
+              label="Time limit (in minutes):"
+              variant="outlined"
+              type="number"
+              onChange={menuActions.changeQuizDuration}
+              style={style.textFieldStyle}
+              value={menuState.quizDuration}
+              helperText="Error: Number must be greater than 0."
+              error={!(menuState.quizDuration > 0)}
+              className={styles.menu__input}
+            />
+          </div>
+          <div className={styles.menu__itemContainer}>
             <StartQuizButton
-              label="START"
+              label="Start"
               variant="contained"
               onClick={menuActions.startQuiz}
               color="primary"
