@@ -74,7 +74,13 @@ const Questions = ({
                   seconds={quizDuration * 60}
                   showMilliseconds={true}
                   timeFormat="hms"
-                  color="#000"
+                  color={`${
+                    quizDuration * 60 < 60
+                      ? "#f9da11" // yellow warning for < 1 minute left.
+                      : quizDuration * 60 < 10
+                      ? "#f90004" // red warning for less than 10s left
+                      : "#3F51B5"
+                  }`}
                   alpha={0.9}
                   size={100}
                   fontSize="auto"
@@ -136,7 +142,11 @@ const Questions = ({
                 iconStyle={{ fontSize: "4vh" }}
               />
             </div>
-            <ProgressBar value={questionId + 1} total={quizData.length} />
+            <ProgressBar
+              value={questionId + 1}
+              total={quizData.length}
+              color="blue"
+            />
           </div>
         ) : (
           <LoadingIndicator
