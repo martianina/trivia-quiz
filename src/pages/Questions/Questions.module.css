@@ -11,14 +11,21 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 0.5vw;
+  position: relative;
+  bottom: 1vh;
 }
 
 .questions__title {
   position: relative;
-  bottom: 1.5vh;
+  bottom: 3vh;
 }
 
 .questions__countdownTimer {
   position: relative;
   bottom: 5vh;
+}
+
+.questions__progressBar {
+  position: relative;
+  /* top: 3vh; */
 }

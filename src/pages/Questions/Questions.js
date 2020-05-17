@@ -142,11 +142,13 @@ const Questions = ({
                 iconStyle={{ fontSize: "4vh" }}
               />
             </div>
-            <ProgressBar
-              value={questionId + 1}
-              total={quizData.length}
-              color="blue"
-            />
+            <div className={styles.questions__progressBar}>
+              <ProgressBar
+                value={questionId + 1}
+                total={quizData.length}
+                // color="blue"
+              />
+            </div>
           </div>
         ) : (
           <LoadingIndicator

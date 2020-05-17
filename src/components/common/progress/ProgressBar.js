@@ -2,20 +2,18 @@ import React from "react";
 import { Progress } from "semantic-ui-react";
 import styles from "./ProgressBar.module.css";
 
-const ProgressBar = ({ value, total, color }) => {
+const ProgressBar = ({ value, total }) => {
   return (
-    <Progress
-      className={styles.bar}
-      value={value}
-      total={total}
-      // progress
-      // success={true}
-      color={color}
-      // style={{ fontSize: 10 }}
-    >
-      {value === total && `Last question!`}
-      {/* <div className="progressText">{`${value}/${total}`}</div> */}
-    </Progress>
+    <div className={styles.bar}>
+      <div
+        style={{
+          "--width": `${(value / total) * 100}%`,
+          "--backgroundColor": value !== total ? "#4a5bb9" : "#21BA45",
+        }}
+        className={styles.bar__progress}
+      ></div>
+      <div className={styles.bar__remainder}></div>
+    </div>
   );
 };
 
