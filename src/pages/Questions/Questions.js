@@ -16,6 +16,8 @@ const Questions = ({
   setQuizData,
   setCurrentPage,
   restartQuiz,
+  useDuration,
+
   quizDuration,
 }) => {
   const [questionId, setQuestionId] = useState(0);
@@ -66,18 +68,20 @@ const Questions = ({
       <div>
         {quizData && quizData.length > 0 ? (
           <div className={styles.questionsContainer}>
-            <div className={styles.questions__countdownTimer}>
-              <CountdownClock
-                seconds={quizDuration * 60}
-                showMilliseconds={true}
-                timeFormat="hms"
-                color="#000"
-                alpha={0.9}
-                size={100}
-                fontSize="auto"
-                onComplete={() => setCurrentPage("results")}
-              />
-            </div>
+            {useDuration === "yes" && (
+              <div className={styles.questions__countdownTimer}>
+                <CountdownClock
+                  seconds={quizDuration * 60}
+                  showMilliseconds={true}
+                  timeFormat="hms"
+                  color="#000"
+                  alpha={0.9}
+                  size={100}
+                  fontSize="auto"
+                  onComplete={() => setCurrentPage("results")}
+                />
+              </div>
+            )}
             <div className={styles.questions__title}>
               <Title
                 title={`${questionId + 1}. ${

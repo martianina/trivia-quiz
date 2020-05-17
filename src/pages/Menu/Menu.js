@@ -5,6 +5,7 @@ import NumberOfQuestionsField from "../../components/common/inputs/Textfield/Tex
 import CategoryDropdown from "../../components/common/inputs/Dropdown/Dropdown";
 import DifficultyDropdown from "../../components/common/inputs/Dropdown/Dropdown";
 import TypeDropdown from "../../components/common/inputs/Dropdown/Dropdown";
+import ToggleDuration from "../../components/common/buttons/radioButtons/RadioButtons/RadioButtons";
 import DurationInput from "../../components/common/inputs/Textfield/Textfield";
 import StartQuizButton from "../../components/common/buttons/Button/Button";
 import styles from "./Menu.module.css";
@@ -81,19 +82,29 @@ const Menu = ({ menuActions, menuState }) => {
               className={styles.menu__input}
             />
           </div>
-          <div className={styles.menu__itemContainer}>
-            <DurationInput
-              label="Time limit (in minutes):"
-              variant="outlined"
-              type="number"
-              onChange={menuActions.changeQuizDuration}
-              style={style.textFieldStyle}
-              value={menuState.quizDuration}
-              helperText="Error: Number must be greater than 0."
-              error={!(menuState.quizDuration > 0)}
-              className={styles.menu__input}
+          <div className={styles.menu__itemContainerForSetTimeLimit}>
+            <ToggleDuration
+              label="Set time limit?"
+              values={["yes", "no"]}
+              value={menuState.useDuration}
+              onChange={menuActions.changeUseDuration}
             />
           </div>
+          {menuState.useDuration === "yes" && (
+            <div className={styles.menu__itemContainer}>
+              <DurationInput
+                label="Time limit (in minutes):"
+                variant="outlined"
+                type="number"
+                onChange={menuActions.changeQuizDuration}
+                style={style.textFieldStyle}
+                value={menuState.quizDuration}
+                helperText="Error: Number must be greater than 0."
+                error={!(menuState.quizDuration > 0)}
+                className={styles.menu__input}
+              />
+            </div>
+          )}
           <div className={styles.menu__itemContainer}>
             <StartQuizButton
               label="Start"

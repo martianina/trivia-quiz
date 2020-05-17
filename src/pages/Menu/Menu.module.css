@@ -23,3 +23,8 @@
 .menu__itemContainer {
   margin: auto;
 }
+
+.menu__itemContainerForSetTimeLimit {
+  position: relative;
+  left: 0.7vw;
+}
