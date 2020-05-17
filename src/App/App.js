@@ -108,6 +108,7 @@ function App() {
           quizData={quizData}
           setQuizData={setQuizData}
           setCurrentPage={setCurrentPage}
+          restartQuiz={restartQuiz}
         />
       )}
     </div>

@@ -5,12 +5,7 @@ import Table from "../../components/common/Table/Table";
 import styles from "./Results.module.css";
 import { convertToRegularString } from "../../modules/StringModifiers";
 
-const Results = ({ quizData, setQuizData, setCurrentPage }) => {
-  const onRestart = () => {
-    setQuizData(null);
-    setCurrentPage("menu");
-  };
-
+const Results = ({ quizData, restartQuiz }) => {
   const getFinalScore = () => {
     let finalScore = 0;
     for (let _ of quizData) {
@@ -36,7 +31,7 @@ const Results = ({ quizData, setQuizData, setCurrentPage }) => {
         label={"Restart"}
         variant="contained"
         color="primary"
-        onClick={() => onRestart()}
+        onClick={() => restartQuiz()}
       />
     </div>
   );
