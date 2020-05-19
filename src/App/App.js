@@ -121,6 +121,7 @@ function App() {
           restartQuiz={restartQuiz}
           quizDuration={quizDuration}
           useDuration={useDuration}
+          currentPage={currentPage}
         />
       )}
       {currentPage === "results" && (

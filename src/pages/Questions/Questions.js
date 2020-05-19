@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AnswerGrid from "../../components/AnswerGrid/AnswerGrid";
 import LeftArrowIconButton from "../../components/common/buttons/iconButtons/LeftArrowIconButton";
 import RestartIconButton from "../../components/common/buttons/iconButtons/RestartIconButton";
@@ -10,6 +10,7 @@ import ConfirmationPrompt from "../../components/common/modals/Confirmation";
 import AlertPrompt from "../../components/common/modals/Alert";
 import CountdownClock from "react-countdown-clock";
 import { convertToRegularString } from "../../modules/StringModifiers";
+import moment from "moment";
 import styles from "./Questions.module.css";
 
 const Questions = ({
@@ -18,12 +19,15 @@ const Questions = ({
   setCurrentPage,
   restartQuiz,
   useDuration,
-
   quizDuration,
+  currentPage,
 }) => {
   const [questionId, setQuestionId] = useState(0);
   const [confirmationPrompt, setconfirmationPrompt] = useState(false);
   const [alertPrompt, setAlertPrompt] = useState(false);
+  const [countdown, setCountdown] = useState(null);
+
+  const deadline = moment().add(quizDuration, "minutes");
 
   const toggleConfirmationPrompt = () =>
     setconfirmationPrompt(!confirmationPrompt);
@@ -67,6 +71,24 @@ const Questions = ({
   const onClickFinishButton = () => {
     setCurrentPage("results");
   };
+
+  // Start countdown
+  useEffect(() => {
+    if (useDuration === "yes") {
+      const startCountdown = setInterval(() => {
+        const now = moment();
+        const currentTimeLeft = moment.duration(deadline.diff(now));
+        if (currentTimeLeft.asSeconds() > 0 && currentPage === "questions") {
+          console.log("Decrement");
+          setCountdown(currentTimeLeft.asSeconds());
+        } else {
+          clearInterval(startCountdown);
+          console.log("Done");
+        }
+      }, 1000);
+    }
+  }, []);
+
   return (
     <div>
       <div>
@@ -79,10 +101,10 @@ const Questions = ({
                   showMilliseconds={true}
                   timeFormat="hms"
                   color={`${
-                    quizDuration * 60 < 60
-                      ? "#f9da11" // yellow warning for < 1 minute left.
-                      : quizDuration * 60 < 10
-                      ? "#f90004" // red warning for less than 10s left
+                    countdown < 60 && countdown >= 10
+                      ? "#f9da11" // yellow warning for < 1 minute left on countdown.
+                      : countdown < 10
+                      ? "#f90004" // red warning for less than 10s left on countdown.
                       : "#3F51B5"
                   }`}
                   alpha={0.9}
