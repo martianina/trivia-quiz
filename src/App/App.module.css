@@ -3,4 +3,11 @@
   height: 100vh;
   align-items: center;
   justify-content: center;
+  background-image: url("../images/quiz-background.png");
+}
+
+.App__card {
+  background-color: white;
+  padding: 5vh;
+  border: 0.5vh double #2a2e48;
 }

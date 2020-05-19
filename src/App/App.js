@@ -110,34 +110,36 @@ function App() {
   };
   return (
     <div className={styles.App}>
-      {currentPage === "menu" && (
-        <Menu menuActions={menuActions} menuState={menuState} />
-      )}
-      {currentPage === "questions" && (
-        <Questions
-          quizData={quizData}
-          setQuizData={setQuizData}
-          setCurrentPage={setCurrentPage}
-          restartQuiz={restartQuiz}
-          quizDuration={quizDuration}
-          useDuration={useDuration}
-          currentPage={currentPage}
+      <div className={styles.App__card}>
+        {currentPage === "menu" && (
+          <Menu menuActions={menuActions} menuState={menuState} />
+        )}
+        {currentPage === "questions" && (
+          <Questions
+            quizData={quizData}
+            setQuizData={setQuizData}
+            setCurrentPage={setCurrentPage}
+            restartQuiz={restartQuiz}
+            quizDuration={quizDuration}
+            useDuration={useDuration}
+            currentPage={currentPage}
+          />
+        )}
+        {currentPage === "results" && (
+          <Results
+            quizData={quizData}
+            setQuizData={setQuizData}
+            setCurrentPage={setCurrentPage}
+            restartQuiz={restartQuiz}
+          />
+        )}
+        <AlertPrompt
+          title="Error"
+          text="Please fix all errors before clicking start."
+          open={errorPrompt}
+          togglePrompt={toggleErrorPrompt}
         />
-      )}
-      {currentPage === "results" && (
-        <Results
-          quizData={quizData}
-          setQuizData={setQuizData}
-          setCurrentPage={setCurrentPage}
-          restartQuiz={restartQuiz}
-        />
-      )}
-      <AlertPrompt
-        title="Error"
-        text="Please fix all errors before clicking start."
-        open={errorPrompt}
-        togglePrompt={toggleErrorPrompt}
-      />
+      </div>
     </div>
   );
 }
