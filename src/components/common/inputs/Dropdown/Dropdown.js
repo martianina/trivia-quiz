@@ -29,7 +29,12 @@ const Dropdown = ({
         onChange={onChange}
         value={value}
         renderInput={(params) => (
-          <TextField {...params} label={label} variant={variant} />
+          <TextField
+            {...params}
+            color="secondary"
+            label={label}
+            variant={variant}
+          />
         )}
       />
     </div>

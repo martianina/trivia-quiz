@@ -35,7 +35,10 @@ const Menu = ({ menuActions, menuState }) => {
         {categories ? (
           <div className={styles.menu}>
             <div className={styles.menu__itemContainer}>
-              <Title title="Welcome to Anthony Hien Vu's Quiz!" />
+              <Title
+                className={styles.menu__title}
+                title="Welcome to Anthony Hien Vu's Quiz!"
+              />
             </div>
             <div className={styles.menu__itemContainer}>
               <NumberOfQuestionsField
@@ -116,15 +119,17 @@ const Menu = ({ menuActions, menuState }) => {
             </div>
           </div>
         ) : (
-          <LoadingIndicator
-            size="10vh"
-            label="Menu Loading"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          />
+          <div className={styles.menu__loadingIndicator}>
+            <LoadingIndicator
+              size="10vh"
+              label="Menu Loading"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            />
+          </div>
         )}
       </div>
     </div>

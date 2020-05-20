@@ -177,18 +177,20 @@ const Questions = ({
             </div>
           </div>
         ) : (
-          <LoadingIndicator
-            size="10vh"
-            label={`${
-              quizData ? "No Questions Available" : "Questions Loading"
-            }`}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-            onRestart={quizData ? restartQuiz() : null}
-          />
+          <div className={styles.questions__loadingIndicator}>
+            <LoadingIndicator
+              size="10vh"
+              label={`${
+                quizData ? "No Questions Available" : "Questions Loading"
+              }`}
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onRestart={quizData ? restartQuiz() : null}
+            />
+          </div>
         )}
       </div>
       <ConfirmationPrompt
