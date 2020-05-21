@@ -1,3 +1,7 @@
+// Color constants
+export const unhighlightedBlack = "black";
+export const highlightedPink = "#fd5660";
+
 export const difficulties = [
   { name: "Any Difficulty", value: null },
   { name: "Easy", value: "easy" },
@@ -14,25 +18,49 @@ export const types = [
 export const textFieldStyle = {
   root: {
     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "black",
+      borderColor: unhighlightedBlack,
     },
     "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#fd5660",
+      borderColor: highlightedPink,
     },
     "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-      borderColor: "#fd5660",
+      borderColor: highlightedPink,
       borderWidth: "medium",
     },
     "& .MuiInputLabel-root": {
-      color: "black",
+      color: unhighlightedBlack,
     },
     "&:hover .MuiInputLabel-root": {
-      borderColor: "#fd5660",
+      color: highlightedPink,
     },
     "& .MuiInputLabel-root.Mui-focused": {
-      borderColor: "#fd5660",
-      borderWidth: "medium",
+      color: highlightedPink,
+      fontWeight: "bold",
     },
   },
 };
-export const dropdownStyle = {};
+
+export const dropdownStyle = {
+  root: {
+    "& .MuiAutocomplete-inputRoot .MuiOutlinedInput-notchedOutline": {
+      borderColor: unhighlightedBlack,
+    },
+    "&:hover .MuiAutocomplete-inputRoot .MuiOutlinedInput-notchedOutline": {
+      borderColor: highlightedPink,
+    },
+    "& .MuiAutocomplete-inputRoot.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: highlightedPink,
+      borderWidth: "medium",
+    },
+    "& .MuiInputLabel-root": {
+      color: unhighlightedBlack,
+    },
+    "&:hover .MuiInputLabel-root": {
+      color: highlightedPink,
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: highlightedPink,
+      fontWeight: "bold",
+    },
+  },
+};

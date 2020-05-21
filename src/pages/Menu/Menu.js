@@ -42,7 +42,7 @@ const Menu = ({ menuActions, menuState }) => {
             </div>
             <div className={styles.menu__itemContainer}>
               <NumberOfQuestionsField
-                label="Number of questions:"
+                label="Number of questions"
                 variant="outlined"
                 type="number"
                 onChange={menuActions.changeNumberOfQuestions}
@@ -56,7 +56,7 @@ const Menu = ({ menuActions, menuState }) => {
             <div className={styles.menu__itemContainer}>
               <CategoryDropdown
                 options={categories}
-                label="Category:"
+                label="Category"
                 variant="outlined"
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeCategory}
@@ -67,7 +67,7 @@ const Menu = ({ menuActions, menuState }) => {
             <div className={styles.menu__itemContainer}>
               <DifficultyDropdown
                 options={style.difficulties}
-                label="Difficulty:"
+                label="Difficulty"
                 variant="outlined"
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeDifficulty}
@@ -78,7 +78,7 @@ const Menu = ({ menuActions, menuState }) => {
             <div className={styles.menu__itemContainer}>
               <TypeDropdown
                 options={style.types}
-                label="Question type:"
+                label="Question type"
                 variant="outlined"
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeType}
@@ -92,12 +92,13 @@ const Menu = ({ menuActions, menuState }) => {
                 values={["yes", "no"]}
                 value={menuState.useDuration}
                 onChange={menuActions.changeUseDuration}
+                color={style.highlightedPink}
               />
             </div>
             {menuState.useDuration === "yes" && (
               <div className={styles.menu__itemContainer}>
                 <DurationInput
-                  label="Time limit (in minutes):"
+                  label="Time limit (in minutes)"
                   variant="outlined"
                   type="number"
                   onChange={menuActions.changeQuizDuration}
@@ -114,7 +115,16 @@ const Menu = ({ menuActions, menuState }) => {
                 label="Start"
                 variant="contained"
                 onClick={menuActions.startQuiz}
-                color="primary"
+                style={{
+                  backgroundColor: style.highlightedPink,
+                  color: "#FFF",
+                  fontWeight: "bold",
+                  "&:hover": {
+                    backgroundColor: style.highlightedPink,
+                    color: "#FFF",
+                    fontWeight: "bold",
+                  },
+                }}
               />
             </div>
           </div>

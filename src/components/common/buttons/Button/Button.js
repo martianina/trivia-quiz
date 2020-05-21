@@ -10,10 +10,10 @@ const GenericButton = ({
   style,
   labelStyle,
 }) => {
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles({
     root: { ...style, textTransform: "none" },
     label: labelStyle,
-  }));
+  });
 
   const classes = useStyles();
   return (

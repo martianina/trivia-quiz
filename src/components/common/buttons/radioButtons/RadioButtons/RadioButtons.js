@@ -4,11 +4,30 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 
-export default function RadioButtonsGroup({ label, values, value, onChange }) {
+export default function RadioButtonsGroup({
+  label,
+  values,
+  value,
+  onChange,
+  color,
+}) {
+  const ModifiedRadio = withStyles({
+    root: {
+      color: "black",
+      "&$checked": {
+        color: color,
+      },
+    },
+    checked: {},
+  })((props) => <Radio {...props} />);
+
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">{label}</FormLabel>
+      <FormLabel component="legend" style={{ color: "black" }}>
+        {label}
+      </FormLabel>
       <RadioGroup
         aria-label="gender"
         name="gender1"
@@ -18,7 +37,7 @@ export default function RadioButtonsGroup({ label, values, value, onChange }) {
         {values.map((_) => (
           <FormControlLabel
             value={_}
-            control={<Radio />}
+            control={<ModifiedRadio />}
             label={_.charAt(0).toUpperCase() + _.slice(1)}
           />
         ))}

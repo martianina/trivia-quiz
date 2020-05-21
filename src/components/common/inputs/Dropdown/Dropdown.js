@@ -13,10 +13,7 @@ const Dropdown = ({
   value,
   className,
 }) => {
-  const useStyles = makeStyles((theme) => ({
-    inputRoot: inputStyle,
-    listbox: listboxStyle,
-  }));
+  const useStyles = makeStyles(inputStyle);
 
   const classes = useStyles();
   return (
@@ -31,7 +28,7 @@ const Dropdown = ({
         renderInput={(params) => (
           <TextField
             {...params}
-            color="secondary"
+            // color="secondary"
             label={label}
             variant={variant}
           />
