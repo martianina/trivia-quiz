@@ -48,7 +48,10 @@ const Menu = ({ menuActions, menuState }) => {
                 type="number"
                 onChange={menuActions.changeNumberOfQuestions}
                 style={style.textFieldStyle}
-                inputProps={{ height: "3vh", fontSize: "2vh" }}
+                inputProps={{
+                  height: "3vh",
+                  fontSize: "clamp(10px, 2vh, 15px)",
+                }}
                 value={menuState.numberOfQuestions}
                 helperText="Error: Number must be an integer less than or equal to 50."
                 error={!menuState.isNumberOfQuestionsValid}
@@ -109,6 +112,10 @@ const Menu = ({ menuActions, menuState }) => {
                   helperText="Error: Number must be greater than 0."
                   error={!(menuState.quizDuration > 0)}
                   className={styles.menu__input}
+                  inputProps={{
+                    height: "3vh",
+                    fontSize: "clamp(10px, 2vh, 15px)",
+                  }}
                 />
               </div>
             )}

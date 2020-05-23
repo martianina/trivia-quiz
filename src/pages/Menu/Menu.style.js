@@ -70,6 +70,8 @@ export const dropdownStyle = {
   },
   inputRoot: {
     height: "5vh",
-    fontSize: "2vh",
+    // fontSize: "15px",
+    // fontSize: "2vh",
+    fontSize: "clamp(10px, 2vh, 15px)",
   },
 };

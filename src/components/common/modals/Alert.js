@@ -5,6 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import * as colors from "../../../App/standard-colors";
 
 const AlertModalComponent = ({ title, text, open, togglePrompt }) => {
   return (
@@ -26,7 +27,7 @@ const AlertModalComponent = ({ title, text, open, togglePrompt }) => {
           <Button
             onClick={togglePrompt}
             color="primary"
-            style={{ fontWeight: "bold" }}
+            style={{ fontWeight: "bold", color: colors.pink }}
           >
             OK
           </Button>

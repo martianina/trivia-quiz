@@ -15,24 +15,28 @@
   font-family: var(--loadingIndicatorFont);
 }
 
+.menu__itemContainerForSetTimeLimit {
+  margin-left: 4.5%;
+}
+
 @media only screen and (min-width: 300px) {
   .menu__input {
     width: 50vw;
     /* height: 5vh; */
     /* height: 8vh; */
   }
-  .menu__itemContainerForSetTimeLimit {
+  /* .menu__itemContainerForSetTimeLimit {
     margin-left: 3.5vw;
-  }
+  } */
 }
 
 @media only screen and (min-width: 500px) {
   .menu__input {
     width: 30vw;
   }
-  .menu__itemContainerForSetTimeLimit {
-    margin-left: 3.5vw;
-  }
+  /* .menu__itemContainerForSetTimeLimit {
+    margin-left: 1.8vw;
+  } */
 }
 
 @media only screen and (min-width: 1000px) {
@@ -40,7 +44,7 @@
     width: 30vw;
   }
   .menu__itemContainerForSetTimeLimit {
-    margin-left: 3.5vw;
+    margin-left: 8.5%;
   }
 }
 
@@ -49,7 +53,7 @@
     width: 20vw;
   }
   .menu__itemContainerForSetTimeLimit {
-    margin-left: 1.5vw;
+    margin-left: 5%;
   }
 }
 

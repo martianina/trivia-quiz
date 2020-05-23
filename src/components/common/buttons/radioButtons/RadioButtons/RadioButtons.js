@@ -27,7 +27,7 @@ export default function RadioButtonsGroup({
     <FormControl component="fieldset">
       <FormLabel
         component="legend"
-        style={{ color: "black", fontSize: "10px" }}
+        style={{ color: "black", fontSize: "11.5px" }}
       >
         {label}
       </FormLabel>
