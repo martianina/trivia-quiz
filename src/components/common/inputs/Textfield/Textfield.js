@@ -12,6 +12,7 @@ const Textfield = ({
   helperText,
   error,
   className,
+  inputProps,
 }) => {
   const useStyles = makeStyles(style);
 
@@ -25,9 +26,13 @@ const Textfield = ({
         label={label}
         variant={variant}
         onChange={onChange}
+        inputProps={{
+          style: inputProps,
+        }}
         type={type}
         value={value}
         helperText={error ? helperText : ""}
+        size="small"
       />
     </div>
   );

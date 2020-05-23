@@ -3,6 +3,7 @@
 .bar {
   width: 27vw;
   display: flex;
+  max-width: 500px;
 }
 
 .progressText {

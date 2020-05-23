@@ -24,6 +24,7 @@ const Dropdown = ({
         className={className}
         getOptionLabel={(option) => option.name}
         onChange={onChange}
+        size="small"
         value={value}
         renderInput={(params) => (
           <TextField

@@ -115,8 +115,9 @@ const Questions = ({
                 />
               </div>
             )}
-            <div className={styles.questions__title}>
+            <div>
               <Title
+                className={styles.questions__title}
                 title={`${questionId + 1}. ${
                   quizData[questionId] &&
                   convertToRegularString(quizData[questionId].question)

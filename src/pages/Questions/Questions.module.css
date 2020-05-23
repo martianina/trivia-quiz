@@ -18,7 +18,8 @@
 .questions__title {
   position: relative;
   bottom: 3vh;
-  font-family: var(--titleFont);
+  /* font-family: var(--titleFont); */
+  font-size: 3.5vh;
 }
 
 .questions__countdownTimer {

@@ -5,3 +5,8 @@
   grid-gap: 2vh;
   text-align: center;
 }
+
+.results__title {
+  font-family: var(--titleFont);
+  font-size: 3.5vh;
+}

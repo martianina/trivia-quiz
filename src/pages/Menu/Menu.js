@@ -48,6 +48,7 @@ const Menu = ({ menuActions, menuState }) => {
                 type="number"
                 onChange={menuActions.changeNumberOfQuestions}
                 style={style.textFieldStyle}
+                inputProps={{ height: "3vh", fontSize: "2vh" }}
                 value={menuState.numberOfQuestions}
                 helperText="Error: Number must be an integer less than or equal to 50."
                 error={!menuState.isNumberOfQuestionsValid}

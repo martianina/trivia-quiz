@@ -1,6 +1,7 @@
 import * as colors from "../../App/standard-colors";
 
 export const nonSelectedButtonStyle = {
+  padding: "0.5vh",
   backgroundColor: colors.lightBeige,
   fontWeight: "bold",
   "&:hover": {
@@ -11,6 +12,7 @@ export const nonSelectedButtonStyle = {
 };
 
 export const selectedButtonStyle = {
+  padding: "0.5vh",
   backgroundColor: colors.pink,
   color: "#FFF",
   fontWeight: "bold",

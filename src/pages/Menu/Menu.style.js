@@ -40,6 +40,9 @@ export const textFieldStyle = {
       fontWeight: "bold",
     },
   },
+  // inputRoot: {
+  //   height: "5vh",
+  // },
 };
 
 export const dropdownStyle = {
@@ -65,15 +68,8 @@ export const dropdownStyle = {
       fontWeight: "bold",
     },
   },
+  inputRoot: {
+    height: "5vh",
+    fontSize: "2vh",
+  },
 };
-
-// export const buttonStyle = {
-//   backgroundColor: highlightedPink,
-//   color: "#FFF",
-//   fontWeight: "bold",
-//   "&:hover": {
-//     backgroundColor: highlightedPink,
-//     color: "#FFF",
-//     fontWeight: "bold",
-//   },
-// };
