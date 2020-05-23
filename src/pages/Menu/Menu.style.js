@@ -1,6 +1,8 @@
 // Color constants
+import * as colors from "../../App/standard-colors";
+
 export const unhighlightedBlack = "black";
-export const highlightedPink = "#fd5660";
+export const highlightedPink = colors.pink;
 
 export const difficulties = [
   { name: "Any Difficulty", value: null },
@@ -64,3 +66,14 @@ export const dropdownStyle = {
     },
   },
 };
+
+// export const buttonStyle = {
+//   backgroundColor: highlightedPink,
+//   color: "#FFF",
+//   fontWeight: "bold",
+//   "&:hover": {
+//     backgroundColor: highlightedPink,
+//     color: "#FFF",
+//     fontWeight: "bold",
+//   },
+// };

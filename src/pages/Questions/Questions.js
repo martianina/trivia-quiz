@@ -12,6 +12,7 @@ import CountdownClock from "react-countdown-clock";
 import { convertToRegularString } from "../../modules/StringModifiers";
 import moment from "moment";
 import styles from "./Questions.module.css";
+import * as colors from "../../App/standard-colors";
 
 const Questions = ({
   quizData,
@@ -102,10 +103,10 @@ const Questions = ({
                   timeFormat="hms"
                   color={`${
                     countdown < 60 && countdown >= 10
-                      ? "#f9da11" // yellow warning for < 1 minute left on countdown.
+                      ? colors.yellow // yellow warning for < 1 minute left on countdown.
                       : countdown < 10
-                      ? "#f90004" // red warning for less than 10s left on countdown.
-                      : "#3F51B5"
+                      ? colors.red // red warning for less than 10s left on countdown.
+                      : colors.pink
                   }`}
                   alpha={0.9}
                   size={100}
@@ -136,11 +137,10 @@ const Questions = ({
               {questionId !== 0 && (
                 <LeftArrowIconButton
                   tooltipTitle="Go to previous question"
-                  color="primary"
                   onClick={() => {
                     onClickBackButton();
                   }}
-                  iconStyle={{ fontSize: "4vh" }}
+                  iconStyle={{ fontSize: "4vh", color: colors.pink }}
                 />
               )}
               <RightArrowIconButton
@@ -149,7 +149,6 @@ const Questions = ({
                     ? "Go to next question"
                     : "Finish quiz"
                 }
-                color="primary"
                 onClick={() => {
                   questionId < quizData.length - 1
                     ? selectedAnswerIndex || selectedAnswerIndex === 0
@@ -159,13 +158,12 @@ const Questions = ({
                     ? onClickFinishButton()
                     : toggleAlertPrompt();
                 }}
-                iconStyle={{ fontSize: "4vh" }}
+                iconStyle={{ fontSize: "4vh", color: colors.pink }}
               />
               <RestartIconButton
                 tooltipTitle="Restart Quiz"
-                color="primary"
                 onClick={() => toggleConfirmationPrompt()}
-                iconStyle={{ fontSize: "4vh" }}
+                iconStyle={{ fontSize: "4vh", color: colors.pink }}
               />
             </div>
             <div className={styles.questions__progressBar}>

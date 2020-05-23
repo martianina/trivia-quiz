@@ -5,6 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import * as colors from "../../../App/standard-colors";
 
 const ConfirmationModalComponent = ({
   title,
@@ -31,16 +32,16 @@ const ConfirmationModalComponent = ({
         <DialogActions style={{ justifyContent: "center" }}>
           <Button
             onClick={togglePrompt}
-            color="primary"
-            style={{ fontWeight: "bold" }}
+            // color="primary"
+            style={{ fontWeight: "bold", color: colors.pink }}
           >
             Cancel
           </Button>
           <Button
             onClick={onRestart}
-            color="primary"
+            // color="primary"
             autoFocus
-            style={{ fontWeight: "bold" }}
+            style={{ fontWeight: "bold", color: colors.pink }}
           >
             Yes
           </Button>

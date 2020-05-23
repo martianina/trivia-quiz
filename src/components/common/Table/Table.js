@@ -1,6 +1,7 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import * as colors from "../../../App/standard-colors";
 
 const tableTheme = createMuiTheme({
   overrides: {
@@ -24,7 +25,7 @@ const Table = ({ title, columns, data }) => {
           return {
             style: {
               fontWeight: "bold",
-              color: "#3F51B5",
+              color: colors.pink,
             },
           };
         },

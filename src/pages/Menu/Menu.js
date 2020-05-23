@@ -9,6 +9,7 @@ import ToggleDuration from "../../components/common/buttons/radioButtons/RadioBu
 import DurationInput from "../../components/common/inputs/Textfield/Textfield";
 import StartQuizButton from "../../components/common/buttons/Button/Button";
 import styles from "./Menu.module.css";
+import * as appStyle from "../../App/App.style";
 import * as style from "./Menu.style";
 
 const Menu = ({ menuActions, menuState }) => {
@@ -115,16 +116,7 @@ const Menu = ({ menuActions, menuState }) => {
                 label="Start"
                 variant="contained"
                 onClick={menuActions.startQuiz}
-                style={{
-                  backgroundColor: style.highlightedPink,
-                  color: "#FFF",
-                  fontWeight: "bold",
-                  "&:hover": {
-                    backgroundColor: style.highlightedPink,
-                    color: "#FFF",
-                    fontWeight: "bold",
-                  },
-                }}
+                style={appStyle.buttonStyle}
               />
             </div>
           </div>

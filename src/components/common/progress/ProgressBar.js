@@ -1,6 +1,6 @@
 import React from "react";
-import { Progress } from "semantic-ui-react";
 import styles from "./ProgressBar.module.css";
+import * as colors from "../../../App/standard-colors";
 
 const ProgressBar = ({ value, total }) => {
   return (
@@ -8,7 +8,7 @@ const ProgressBar = ({ value, total }) => {
       <div
         style={{
           "--width": `${(value / total) * 100}%`,
-          "--backgroundColor": value !== total ? "#4a5bb9" : "#21BA45",
+          "--backgroundColor": value !== total ? colors.pink : colors.green,
         }}
         className={styles.bar__progress}
       ></div>

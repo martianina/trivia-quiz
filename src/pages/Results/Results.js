@@ -4,6 +4,7 @@ import Button from "../../components/common/buttons/Button/Button";
 import Table from "../../components/common/Table/Table";
 import styles from "./Results.module.css";
 import { convertToRegularString } from "../../modules/StringModifiers";
+import * as appStyle from "../../App/App.style";
 
 const Results = ({ quizData, restartQuiz }) => {
   const getFinalScore = () => {
@@ -30,7 +31,7 @@ const Results = ({ quizData, restartQuiz }) => {
       <Button
         label={"Restart"}
         variant="contained"
-        color="primary"
+        style={appStyle.buttonStyle}
         onClick={() => restartQuiz()}
       />
     </div>

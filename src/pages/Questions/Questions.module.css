@@ -3,10 +3,8 @@
 .questionsContainer {
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
   align-items: center;
   justify-content: center;
-  /* padding: 1vh; */
 }
 
 .questions__buttonsContainer {
@@ -26,11 +24,11 @@
 .questions__countdownTimer {
   position: relative;
   bottom: 5vh;
+  margin-top: 3vh;
 }
 
 .questions__progressBar {
   position: relative;
-  /* top: 3vh; */
 }
 
 .questions__loadingIndicator {

@@ -1,6 +1,7 @@
 import React from "react";
 import AnswerButton from "../common/buttons/Button/Button";
 import styles from "./AnswerGrid.module.css";
+import * as style from "./AnswerGrid.style";
 
 const AnswerGrid = ({
   answers,
@@ -19,11 +20,15 @@ const AnswerGrid = ({
             ? () => setSelectedAnswerIndex(1)
             : () => setSelectedAnswerIndex(0)
         }
-        color={`${
+        style={
           isBoolean
-            ? selectedAnswerIndex === 1 && "secondary"
-            : selectedAnswerIndex === 0 && "secondary"
-        }`}
+            ? selectedAnswerIndex === 1
+              ? style.selectedButtonStyle
+              : style.nonSelectedButtonStyle
+            : selectedAnswerIndex === 0
+            ? style.selectedButtonStyle
+            : style.nonSelectedButtonStyle
+        }
       />
       <AnswerButton
         label={isBoolean ? answers && answers[0] : answers && answers[1]}
@@ -33,18 +38,26 @@ const AnswerGrid = ({
             ? () => setSelectedAnswerIndex(0)
             : () => setSelectedAnswerIndex(1)
         }
-        color={`${
+        style={
           isBoolean
-            ? selectedAnswerIndex === 0 && "secondary"
-            : selectedAnswerIndex === 1 && "secondary"
-        }`}
+            ? selectedAnswerIndex === 0
+              ? style.selectedButtonStyle
+              : style.nonSelectedButtonStyle
+            : selectedAnswerIndex === 1
+            ? style.selectedButtonStyle
+            : style.nonSelectedButtonStyle
+        }
       />
       {!isBoolean && (
         <AnswerButton
           label={answers && answers[2]}
           variant="contained"
           onClick={() => setSelectedAnswerIndex(2)}
-          color={`${selectedAnswerIndex === 2 && "secondary"}`}
+          style={
+            selectedAnswerIndex === 2
+              ? style.selectedButtonStyle
+              : style.nonSelectedButtonStyle
+          }
         />
       )}
       {!isBoolean && (
@@ -52,7 +65,11 @@ const AnswerGrid = ({
           label={answers && answers[3]}
           variant="contained"
           onClick={() => setSelectedAnswerIndex(3)}
-          color={`${selectedAnswerIndex === 3 && "secondary"}`}
+          style={
+            selectedAnswerIndex === 3
+              ? style.selectedButtonStyle
+              : style.nonSelectedButtonStyle
+          }
         />
       )}
     </div>

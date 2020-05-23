@@ -1,3 +1,5 @@
+@import "../../../App/config.module.css";
+
 .bar {
   width: 27vw;
   display: flex;
@@ -17,7 +19,7 @@
 }
 
 .bar__remainder {
-  background-color: #f6f6f6;
+  background-color: var(--lightGrey);
   height: 3vh;
   flex-grow: 1;
 }
