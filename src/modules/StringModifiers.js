@@ -17,6 +17,9 @@ const htmlsToReplace = {
   "&Aacute;": `Á`,
   "&ntilde;": `ñ`,
   "&pi;": `π`,
+  "&ouml": `ö`,
+  "&Ouml": `Ö`,
+  "&iacute": `í`,
 };
 
 const removeHTMLCharacters = (string) => {

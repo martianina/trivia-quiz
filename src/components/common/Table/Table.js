@@ -7,7 +7,7 @@ const tableTheme = createMuiTheme({
   overrides: {
     MUIDataTable: {
       responsiveScroll: {
-        maxHeight: "65vh",
+        maxHeight: "50vh",
       },
     },
   },

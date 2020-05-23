@@ -35,13 +35,10 @@ const Menu = ({ menuActions, menuState }) => {
       <div>
         {categories ? (
           <div className={styles.menu}>
-            <div className={styles.menu__itemContainer}>
-              <Title
-                className={styles.menu__title}
-                title="Welcome to Anthony Hien Vu's Quiz!"
-              />
+            <div>
+              <Title className={styles.menu__title} title="Trivia Quiz" />
             </div>
-            <div className={styles.menu__itemContainer}>
+            <div>
               <NumberOfQuestionsField
                 label="Number of questions"
                 variant="outlined"
@@ -58,7 +55,7 @@ const Menu = ({ menuActions, menuState }) => {
                 className={styles.menu__input}
               />
             </div>
-            <div className={styles.menu__itemContainer}>
+            <div>
               <CategoryDropdown
                 options={categories}
                 label="Category"
@@ -69,7 +66,7 @@ const Menu = ({ menuActions, menuState }) => {
                 className={styles.menu__input}
               />
             </div>
-            <div className={styles.menu__itemContainer}>
+            <div>
               <DifficultyDropdown
                 options={style.difficulties}
                 label="Difficulty"
@@ -80,7 +77,7 @@ const Menu = ({ menuActions, menuState }) => {
                 className={styles.menu__input}
               />
             </div>
-            <div className={styles.menu__itemContainer}>
+            <div>
               <TypeDropdown
                 options={style.types}
                 label="Question type"
@@ -91,7 +88,7 @@ const Menu = ({ menuActions, menuState }) => {
                 className={styles.menu__input}
               />
             </div>
-            <div className={styles.menu__itemContainerForSetTimeLimit}>
+            <div>
               <ToggleDuration
                 label="Set time limit?"
                 values={["yes", "no"]}
@@ -101,7 +98,7 @@ const Menu = ({ menuActions, menuState }) => {
               />
             </div>
             {menuState.useDuration === "yes" && (
-              <div className={styles.menu__itemContainer}>
+              <div>
                 <DurationInput
                   label="Time limit (in minutes)"
                   variant="outlined"
@@ -119,7 +116,7 @@ const Menu = ({ menuActions, menuState }) => {
                 />
               </div>
             )}
-            <div className={styles.menu__itemContainer}>
+            <div className={styles.menu__buttonContainer}>
               <StartQuizButton
                 label="Start"
                 variant="contained"
@@ -129,7 +126,7 @@ const Menu = ({ menuActions, menuState }) => {
             </div>
           </div>
         ) : (
-          <div className={styles.menu__loadingIndicator}>
+          <div>
             <LoadingIndicator
               size="10vh"
               label="Menu Loading"

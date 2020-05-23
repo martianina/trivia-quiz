@@ -10,25 +10,5 @@
   background-color: white;
   padding: 5vh;
   border: 0.5vh double #2a2e48;
-  width: 40vw;
-  /* height: 70vh; */
   margin: 0 0;
-}
-
-@media only screen and (min-width: 2000px) {
-  .App__card {
-    background-color: white;
-    padding: 5vh;
-    border: 0.5vh double #2a2e48;
-    width: 25vw;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .App__card {
-    background-color: white;
-    padding: 5vh;
-    border: 0.5vh double #2a2e48;
-    width: 65vw;
-  }
 }

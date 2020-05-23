@@ -29,7 +29,7 @@
 }
 
 .questions__progressBar {
-  position: relative;
+  /* position: relative; */
 }
 
 .questions__loadingIndicator {

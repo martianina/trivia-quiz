@@ -40,9 +40,6 @@ export const textFieldStyle = {
       fontWeight: "bold",
     },
   },
-  // inputRoot: {
-  //   height: "5vh",
-  // },
 };
 
 export const dropdownStyle = {
@@ -70,8 +67,6 @@ export const dropdownStyle = {
   },
   inputRoot: {
     height: "5vh",
-    // fontSize: "15px",
-    // fontSize: "2vh",
     fontSize: "clamp(10px, 2vh, 15px)",
   },
 };
