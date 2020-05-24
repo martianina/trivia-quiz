@@ -36,7 +36,9 @@ const Questions = ({
   const toggleAlertPrompt = () => setAlertPrompt(!alertPrompt);
 
   const selectedAnswerIndex =
-    quizData && quizData[questionId].selectedAnswerIndex;
+    quizData &&
+    quizData[questionId] &&
+    quizData[questionId].selectedAnswerIndex;
   const incrementQuestionId = () => setQuestionId(questionId + 1);
   const decrementQuestionId = () => setQuestionId(questionId - 1);
 
@@ -180,14 +182,17 @@ const Questions = ({
             <LoadingIndicator
               size="10vh"
               label={`${
-                quizData ? "No Questions Available" : "Questions Loading"
+                quizData
+                  ? "No Questions Available, please customize quiz and try again."
+                  : "Questions Loading"
               }`}
               style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
-              onRestart={quizData ? restartQuiz() : null}
+              quizData={quizData}
+              onRestart={() => restartQuiz()}
             />
           </div>
         )}
