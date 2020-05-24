@@ -9,6 +9,7 @@
 .menu__title {
   font-family: var(--titleFont);
   font-size: 3.5vh;
+  text-align: center;
 }
 
 .menu__buttonContainer {

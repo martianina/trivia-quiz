@@ -1,6 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### View this application running at: https://codesandbox.io/s/github/AVu120/trivia-quiz
+### Run application at: https://avu120.github.io/trivia-quiz/
+
+### Edit in CodeSandbox at: https://codesandbox.io/s/trivia-quiz-47vzq
 
 ### To manually run this project:
 

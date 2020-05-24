@@ -20,6 +20,7 @@ const htmlsToReplace = {
   "&ouml": `ö`,
   "&Ouml": `Ö`,
   "&iacute": `í`,
+  "&deg;": `°`,
 };
 
 const removeHTMLCharacters = (string) => {
