@@ -1,6 +1,18 @@
-# This project is still in progress. Upon completion, a codesandbox & github pages link will be posted here so anyone can view the running application and complete the quiz.
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### View this application running at: https://codesandbox.io/s/github/AVu120/trivia-quiz
+
+### To manually run this project:
+
+### `git clone https://github.com/AVu120/trivia-quiz.git`
+
+### `cd trivia-quiz`
+
+### `npm i`
+
+### `npm start`
+
+Then open http://localhost:3000 in a browser.
 
 ## Available Scripts
 
