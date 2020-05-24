@@ -1,6 +1,13 @@
 {
   "name": "trivia-quiz",
+  "description": "A trivia quiz application that queries questions and answers from Open Trivia DB (https://opentdb.com/). Run the app, customize your quiz parameters, complete the quiz and see a comprehensive overview of your results at the end. Additional options to set a countdown timer and reset the quiz upon completion.",
   "version": "0.1.0",
+  "keywords": [
+    "react",
+    "trivia",
+    "quiz",
+    "api"
+  ],
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.13",
