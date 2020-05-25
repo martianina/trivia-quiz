@@ -2,9 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Run application at: https://avu120.github.io/trivia-quiz/
 
-### Edit/fork CodeSandbox at: https://codesandbox.io/s/x14o4
-
-### Browse CodeSandbox (read-only): https://codesandbox.io/s/github/AVu120/trivia-quiz
+### View/edit/fork CodeSandbox at: https://codesandbox.io/s/github/AVu120/trivia-quiz
 
 ### To manually run this project:
 
