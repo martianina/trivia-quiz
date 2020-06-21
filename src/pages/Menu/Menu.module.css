@@ -8,7 +8,7 @@
 
 .menu__title {
   font-family: var(--titleFont);
-  font-size: 3.5vh;
+  font-size: clamp(30px, 3.5vh, 100px);
   text-align: center;
 }
 

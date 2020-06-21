@@ -42,6 +42,12 @@ export const textFieldStyle = {
   },
 };
 
+export const textFieldInputStyle = {
+  minHeight: "2px",
+  height: "3vh",
+  fontSize: "clamp(10px, 2vh, 15px)",
+};
+
 export const dropdownStyle = {
   root: {
     "& .MuiAutocomplete-inputRoot .MuiOutlinedInput-notchedOutline": {
@@ -66,6 +72,7 @@ export const dropdownStyle = {
     },
   },
   inputRoot: {
+    minHeight: "30px",
     height: "5vh",
     fontSize: "clamp(10px, 2vh, 15px)",
   },

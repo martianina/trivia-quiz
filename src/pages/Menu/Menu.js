@@ -45,14 +45,10 @@ const Menu = ({ menuActions, menuState }) => {
                 type="number"
                 onChange={menuActions.changeNumberOfQuestions}
                 style={style.textFieldStyle}
-                inputProps={{
-                  height: "3vh",
-                  fontSize: "clamp(10px, 2vh, 15px)",
-                }}
+                inputProps={style.textFieldInputStyle}
                 value={menuState.numberOfQuestions}
                 helperText="Error: Number must be an integer less than or equal to 50."
                 error={!menuState.isNumberOfQuestionsValid}
-                className={styles.menu__input}
               />
             </div>
             <div>
@@ -63,7 +59,6 @@ const Menu = ({ menuActions, menuState }) => {
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeCategory}
                 value={menuState.category}
-                className={styles.menu__input}
               />
             </div>
             <div>
@@ -74,7 +69,6 @@ const Menu = ({ menuActions, menuState }) => {
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeDifficulty}
                 value={menuState.difficulty}
-                className={styles.menu__input}
               />
             </div>
             <div>
@@ -85,7 +79,6 @@ const Menu = ({ menuActions, menuState }) => {
                 inputStyle={style.dropdownStyle}
                 onChange={menuActions.changeType}
                 value={menuState.type}
-                className={styles.menu__input}
               />
             </div>
             <div>
@@ -108,11 +101,7 @@ const Menu = ({ menuActions, menuState }) => {
                   value={menuState.quizDuration}
                   helperText="Error: Number must be greater than 0."
                   error={!(menuState.quizDuration > 0)}
-                  className={styles.menu__input}
-                  inputProps={{
-                    height: "3vh",
-                    fontSize: "clamp(10px, 2vh, 15px)",
-                  }}
+                  inputProps={style.textFieldInputStyle}
                 />
               </div>
             )}
