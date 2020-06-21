@@ -90,6 +90,7 @@ const Questions = ({
         }
       }, 1000);
     }
+    // eslint-disable-next-line
   }, []);
 
   return (

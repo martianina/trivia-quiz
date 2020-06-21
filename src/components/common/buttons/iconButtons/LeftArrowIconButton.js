@@ -12,12 +12,7 @@ const LeftArrowIconButton = ({
 }) => {
   return (
     <Tooltip title={tooltipTitle}>
-      <IconButton
-        style={buttonStyle}
-        color={color}
-        onClick={onClick}
-        style={buttonStyle}
-      >
+      <IconButton style={buttonStyle} color={color} onClick={onClick}>
         <LeftArrowIcon style={iconStyle} />
       </IconButton>
     </Tooltip>

@@ -2,7 +2,6 @@ import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import RightArrowIcon from "@material-ui/icons/KeyboardArrowRight";
-import { makeStyles } from "@material-ui/core/styles";
 
 const RightArrowIconButton = ({
   tooltipTitle,
