@@ -8,19 +8,19 @@ A trivia quiz game that uses the Open Trivia Database (https://opentdb.com/api_c
 
 ## How to Run Application
 
-### Run application at: https://avu120.github.io/trivia-quiz/
+Run application at: https://avu120.github.io/trivia-quiz/
 
-### View/edit/fork CodeSandbox at: https://codesandbox.io/s/github/AVu120/trivia-quiz
+View/edit/fork CodeSandbox at: https://codesandbox.io/s/github/AVu120/trivia-quiz
 
 ## Application Set Up
 
-### `git clone https://github.com/AVu120/trivia-quiz.git`
+`git clone https://github.com/AVu120/trivia-quiz.git`
 
-### `cd trivia-quiz`
+`cd trivia-quiz`
 
-### `npm i`
+`npm i`
 
-### `npm start`
+`npm start`
 
 Then open http://localhost:3000 in a browser.
 
