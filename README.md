@@ -1,6 +1,13 @@
-# Trivia Quiz
+<h1 align="center">Trivia Quiz</h1>
 
-![image](https://user-images.githubusercontent.com/38395166/85216632-2bedec80-b3ca-11ea-90c1-e8c78bfec1fd.png)
+![image](https://user-images.githubusercontent.com/38395166/132077143-744683ae-dcc1-4c6e-9518-6b5dcb16b618.png)
+
+![image](https://user-images.githubusercontent.com/38395166/132077169-7ab8e3de-db6e-4482-b6e8-d4871e6a3671.png)
+
+![image](https://user-images.githubusercontent.com/38395166/132077205-b5dd0fb8-bb5e-4310-8d44-43d68e086b11.png)
+
+
+Play with this app at https://avu120.github.io/trivia-quiz/.
 
 ## Description
 
